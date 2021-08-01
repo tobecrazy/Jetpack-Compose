@@ -31,6 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -128,20 +129,26 @@ class TextComponentActivity : AppCompatActivity() {
 
     @Composable
     fun SelectableText() {
+        val combineDecoration = listOf(TextDecoration.Underline, TextDecoration.LineThrough)
         SelectionContainer() {
             Column() {
                 Text(
                     text = stringResource(id = R.string.text_in_compose),
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    textDecoration = TextDecoration.LineThrough
                 )
                 DisableSelection {
                     Text(
                         text = stringResource(id = R.string.text_not_selectable),
-                        color = Color.Red
+                        color = Color.Red,
+                        textDecoration = TextDecoration.combine(combineDecoration)
                     )
                 }
-                Text(text = stringResource(id = R.string.text_selectable), maxLines = 2)
+                Text(
+                    text = stringResource(id = R.string.text_selectable),
+                    textDecoration = TextDecoration.Underline, maxLines = 2
+                )
             }
         }
     }

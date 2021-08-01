@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
 import com.young.pdfreader.data.ComponentItems
+import com.young.pdfreader.image.ImagesComponentActivity
 import com.young.pdfreader.text.TextComponentActivity
 import com.young.pdfreader.ui.theme.PDFreaderTheme
 
@@ -129,6 +130,7 @@ fun navigateToActivity(context: Context, text: String) {
     when (text) {
         ComponentItems.TEXT.name -> targetIntent =
             Intent(context, TextComponentActivity::class.java)
+        ComponentItems.IMAGE.name -> targetIntent = Intent(context,ImagesComponentActivity::class.java)
 
     }
     targetIntent?.let {
