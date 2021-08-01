@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">PDFReader</string>
     <string name="title">Compose UI Main</string>
+    <string name="text_in_compose">Text is a central piece of any UI, and Jetpack Compose makes it easier to display or write text. Compose leverages composition of its building blocks, meaning you don’t need to overwrite properties and methods or extend big classes to have a specific composable design and logic working the way you want.
+        As its base, Compose provides a BasicText and BasicTextField which are the barebones to display text and handle user input. At a higher level, Compose provides Text and TextField, which are composables following Material Design guidelines. It’s recommended to use them as they have the right look and feel for users on Android, and includes other options to simplify their customization without having to write a lot of code.</string>
+    <string name="text_not_selectable">You may want to disable selection on specific parts of a selectable area. To do so, you need to wrap the unselectable part with a DisableSelection composable:</string>
+    <string name="text_selectable">Selecting text By default, composables aren’t selectable, which means by default users can\'t select and copy text from your app. To enable text selection, you need to wrap your text elements with a SelectionContainer composable</string>
 </resources>
