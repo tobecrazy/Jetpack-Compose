@@ -7,14 +7,18 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material.TextField
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -24,6 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -48,7 +54,8 @@ class TextComponentActivity : AppCompatActivity() {
                 SelectableText()
                 Spacer(modifier = Modifier.height(10.dp))
                 ClickWithAnnotation()
-
+                Spacer(modifier = Modifier.height(10.dp))
+                InputText(message = "TextField")
             }
         }
     }
@@ -69,7 +76,7 @@ class TextComponentActivity : AppCompatActivity() {
             fontSize = 20.sp,
             maxLines = 3,
             color = Color.DarkGray,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Visible
 
         )
     }
@@ -84,7 +91,7 @@ class TextComponentActivity : AppCompatActivity() {
     @Composable
     fun MultipleStylesInText() {
         Text(buildAnnotatedString {
-            withStyle(style = SpanStyle(color = Color.Blue)) {
+            withStyle(style = SpanStyle(color = Color.Blue, fontStyle = FontStyle.Normal)) {
                 append("I")
             }
             withStyle(style = SpanStyle(fontWeight = FontWeight.SemiBold, color = Color.Red)) {
@@ -162,16 +169,75 @@ class TextComponentActivity : AppCompatActivity() {
         ClickableText(text = annotatedStr, onClick = { offset ->
             annotatedStr.getStringAnnotations(tag = "URL", start = offset, end = offset)
                 .firstOrNull()?.let {
-                showToast(context = context, "Click on URL is ${it.item}")
-            }
+                    showToast(context = context, "Click on URL is ${it.item}")
+                }
             showToast(context = context, "Click on $offset")
 
         })
     }
 
     @Composable
-    fun InputText(){
-        
+    fun InputText(message: String) {
+        val context = LocalContext.current
+        var text by remember {
+            mutableStateOf(message)
+        }
+
+        var password by rememberSaveable {
+            mutableStateOf(message)
+        }
+        Column() {
+            TextField(
+                value = text,
+                onValueChange = { text = it },
+                label = { Text("Label") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(2.dp), maxLines = 2,
+                textStyle = TextStyle(
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            OutlinedTextField(
+                value = text,
+                onValueChange = { text = it },
+                label = { Text("Outline Label") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(), maxLines = 2,
+                textStyle = TextStyle(
+                    color = Color.Red,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+            TextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Enter Password") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(2.dp), maxLines = 1,
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardActions = KeyboardActions(onAny = {
+                    showToast(context = context, password)
+                }),
+                textStyle = TextStyle(
+                    color = Color.DarkGray,
+                    fontWeight = FontWeight.Bold
+                ),
+                shape = RoundedCornerShape(6.dp)
+            )
+
+        }
+
+
     }
 
     fun showToast(context: Context, message: String) {
