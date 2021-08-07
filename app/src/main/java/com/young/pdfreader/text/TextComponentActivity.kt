@@ -46,6 +46,7 @@ class TextComponentActivity : AppCompatActivity() {
         composeView = findViewById(R.id.compose_view)
         composeView.setContent {
             Column {
+                DisplayResourceText(id = R.string.current_year, 2021)
                 DisplayResourceText(id = R.string.text_in_compose)
                 Spacer(modifier = Modifier.height(10.dp))
                 DisplayText(message = "Display String Directly")
@@ -86,6 +87,13 @@ class TextComponentActivity : AppCompatActivity() {
     fun DisplayResourceText(id: Int) {
         //Display string from string resource
         val message = stringResource(id = id)
+        DisplayText(message = message)
+    }
+
+    @Composable
+    fun DisplayResourceText(id: Int, any: Any) {
+        //Display string from string resource
+        val message = stringResource(id = id, any)
         DisplayText(message = message)
     }
 
