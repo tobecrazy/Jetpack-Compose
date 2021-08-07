@@ -12,6 +12,9 @@
         android:theme="@style/Theme.PDFReader"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".button.ButtonComponentActivity"
+            android:exported="true" />
+        <activity
             android:name=".image.ImagesComponentActivity"
             android:exported="true" />
         <activity

@@ -3,6 +3,7 @@ package com.young.pdfreader
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import com.young.pdfreader.button.ButtonComponentActivity
 import com.young.pdfreader.data.ComponentItems
 import com.young.pdfreader.image.ImagesComponentActivity
 import com.young.pdfreader.text.TextComponentActivity
@@ -50,7 +52,22 @@ class MainActivity : ComponentActivity() {
                                 Text(text = stringResource(id = R.string.title), maxLines = 1)
                             },
                             navigationIcon = {
-                                ResourceIcon()
+                                val context = LocalContext.current
+                                IconButton(onClick = {
+                                    showToast(context = context, "Click Close button")
+                                    finish()
+                                }) {
+                                    ResourceIcon()
+                                }
+
+                            },
+                            actions = {
+                                val context = LocalContext.current
+                                IconButton(onClick = {
+                                    showToast(context = context, "Click Add button")
+                                }) {
+                                    Icon(Icons.Filled.Add, contentDescription = "")
+                                }
                             }
                         )
                         ViewItems(
@@ -130,7 +147,10 @@ fun navigateToActivity(context: Context, text: String) {
     when (text) {
         ComponentItems.TEXT.name -> targetIntent =
             Intent(context, TextComponentActivity::class.java)
-        ComponentItems.IMAGE.name -> targetIntent = Intent(context,ImagesComponentActivity::class.java)
+        ComponentItems.IMAGE.name -> targetIntent =
+            Intent(context, ImagesComponentActivity::class.java)
+        ComponentItems.BUTTON.name -> targetIntent =
+            Intent(context, ButtonComponentActivity::class.java)
 
     }
     targetIntent?.let {
