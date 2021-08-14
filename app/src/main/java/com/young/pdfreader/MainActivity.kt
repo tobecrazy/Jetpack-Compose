@@ -75,9 +75,10 @@ class MainActivity : ComponentActivity() {
                                 ComponentItems.TEXT.name,
                                 ComponentItems.IMAGE.name,
                                 ComponentItems.BUTTON.name,
+                                ComponentItems.LIST.name,
+                                ComponentItems.DIALOG.name,
                                 ComponentItems.LAYOUT.name,
                                 ComponentItems.ANIMATION.name,
-                                ComponentItems.LIST.name,
                                 ComponentItems.TOOLBAR.name,
                                 ComponentItems.GESTURE.name
                             )
@@ -163,19 +164,6 @@ fun showToast(context: Context, msg: String) {
     Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
 }
 
-
-@Composable
-fun FloatingButton() {
-    val context = LocalContext.current
-    FloatingActionButton(
-        onClick = { showToast(context = context, "Floating button clicked") },
-        modifier = Modifier
-            .padding(8.dp),
-        backgroundColor = Color.Green
-    ) {
-        Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Button")
-    }
-}
 
 @Composable
 fun BottomBarComponent() {

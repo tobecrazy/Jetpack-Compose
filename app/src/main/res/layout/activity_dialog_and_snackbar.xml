@@ -7,15 +7,15 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".button.ButtonComponentActivity">
+        tools:context=".dialog.DialogAndSnackbarActivity">
 
         <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/button_compose_view"
+            android:id="@+id/snackbar_dialog_compose_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 </layout>
