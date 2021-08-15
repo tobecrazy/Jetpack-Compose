@@ -11,6 +11,7 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Add
@@ -44,6 +45,7 @@ class ButtonComponentActivity : ComponentActivity() {
                         )
                     }
                 }
+                CustomExtendFloatingButton()
                 CustomTextButton()
                 CustomCheckBox(isEnable = true, description = "Checkbox demo")
                 CustomCheckBox(isEnable = false, description = "Checkbox demo disable")
@@ -105,6 +107,34 @@ class ButtonComponentActivity : ComponentActivity() {
                     contentDescription = "Edit Button", tint = Color.Red
                 )
         }
+    }
+
+
+    @Composable
+    fun CustomExtendFloatingButton() {
+        /**
+         * The extended FAB is wider than a regular FAB, and it includes a text label.
+         */
+        val context = LocalContext.current
+
+        ExtendedFloatingActionButton(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    contentDescription = "",
+                    tint = Color.White
+                )
+            },
+            text = { Text(text = "SEE ALL Results", color = Color.White, maxLines = 1) },
+            onClick = {
+                showToast(
+                    context = context,
+                    " The extended FAB is wider than a regular FAB, and it includes a text label."
+                )
+            },
+            shape = MaterialTheme.shapes.medium,
+            backgroundColor = Color.Black
+        )
     }
 
     @Composable
