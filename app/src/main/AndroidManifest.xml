@@ -12,6 +12,9 @@
         android:theme="@style/Theme.PDFReader"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".list.ListItemComponentActivity"
+            android:exported="true" />
+        <activity
             android:name=".dialog.DialogAndSnackbarActivity"
             android:exported="true" />
         <activity

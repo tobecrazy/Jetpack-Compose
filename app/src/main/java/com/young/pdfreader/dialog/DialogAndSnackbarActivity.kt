@@ -4,47 +4,225 @@ package com.young.pdfreader.dialog
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.window.Dialog
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 
 class DialogAndSnackbarActivity : ComponentActivity() {
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            var showDialog1 by remember { mutableStateOf(false) }
+            var showDialog2 by remember { mutableStateOf(false) }
             Column() {
-                Button(onClick = { }) {
-                    Text(text = "Dialog1")
+                CustomSnackBar(message = "This is a snack bar", "This is snackbar body")
+                Row() {
+                    Button(onClick = { showDialog1 = true }, modifier = Modifier.padding(10.dp)) {
+                        Text(text = "Dialog1")
+                    }
+                    if (showDialog1) {
+                        AlertDialog(onDismissRequest = { showDialog1 = false },
+                            title = { Text(text = "My Dialog") },
+                            text = { Text(text = "This is an AlertDialog demo") },
+                            confirmButton = {
+                                TextButton(onClick = { showDialog1 = false }) {
+                                    Text(text = "Confirm")
+                                }
+                            },
+                            dismissButton = {
+                                TextButton(onClick = { showDialog1 = false }) {
+                                    Text(text = "Cancel")
+                                }
+                            }
+                        )
+                    }
 
+                    Button(onClick = { showDialog2 = true }, modifier = Modifier.padding(10.dp)) {
+                        Text(text = "Dialog2")
+                    }
+
+                    if (showDialog2) {
+                        AlertDialog(onDismissRequest = { showDialog2 = false },
+                            buttons = {
+                                Row(horizontalArrangement = Arrangement.Center) {
+                                    Button(
+                                        onClick = { showDialog2 = false },
+                                        modifier = Modifier.padding(10.dp),
+                                    ) {
+                                        Text(text = "Yes")
+                                    }
+                                    Button(
+                                        onClick = { showDialog2 = false },
+                                        modifier = Modifier.padding(10.dp)
+                                    ) {
+                                        Text(text = "No")
+                                    }
+                                    Button(
+                                        onClick = { showDialog2 = false },
+                                        modifier = Modifier.padding(10.dp)
+                                    ) {
+                                        Text(text = "Abort")
+                                    }
+                                }
+
+                            },
+                            title = { Text(text = "My Dialog 2") },
+                            text = { Text(text = "This is a three button dialog demo") }
+                        )
+                    }
                 }
 
-                ProgressBarIndicator()
+            }
+        }
+    }
+
+    @ExperimentalMaterialApi
+    @Composable
+    fun CustomSnackBar(message: String, body: String) {
+        val scaffoldState = rememberScaffoldState()
+        val scope = rememberCoroutineScope()
+        Snackbar(modifier = Modifier.padding(10.dp)) {
+            Text(text = message)
+        }
+        LinearProgressBarIndicator()
+        ProgressBarIndicator()
+
+        /**
+         * This components provides only the visuals of the Snackbar.
+         * If you need to show a Snackbar with defaults on the screen,
+         * use ScaffoldState.snackbarHostState and SnackbarHostState.showSnackbar:
+         */
+        Scaffold(scaffoldState = scaffoldState, floatingActionButton = {
+            var clickCount by remember { mutableStateOf(0) }
+            ExtendedFloatingActionButton(text = { Text(text = "Floating button") },
+                onClick = {
+                    scope.launch {
+                        scaffoldState.snackbarHostState.showSnackbar(
+                            message = message,
+                            actionLabel = "Snack bar label ${++clickCount}",
+                            duration = SnackbarDuration.Short
+                        )
+                    }
+                })
+        }, content = { it ->
+            Text(
+                text = body,
+                modifier = Modifier
+                    .padding(it)
+                    .fillMaxWidth()
+                    .wrapContentSize()
+            )
+        }, snackbarHost = {
+            SnackbarHost(it) { data ->
+                Snackbar(
+                    snackbarData = data,
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .border(2.dp, MaterialTheme.colors.secondary)
+                )
+            }
+        })
+
+    }
+
+
+    @Composable
+    fun ProgressBarIndicator() {
+        var progress by remember {
+            mutableStateOf(0.1f)
+        }
+        val animatedProgress by animateFloatAsState(
+            targetValue = progress,
+            animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+        )
+        Row() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                CircularProgressIndicator(
+                    progress = animatedProgress,
+                    color = Color.Red,
+                    modifier = Modifier
+                        .height(150.dp)
+                        .width(150.dp)
+                        .padding(10.dp),
+                    strokeWidth = 20.dp
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                OutlinedButton(onClick = { if (progress < 1f) progress += 0.1f }) {
+                    Text(text = "Increase")
+
+                }
             }
 
-        }
-    }
-    
-    @Composable
-    fun CustomDialog(){
-        Dialog(onDismissRequest = { /*TODO*/ }) {
+            Spacer(modifier = Modifier.height(20.dp))
+
+            /**
+             * Progress indicators express an unspecified wait time or display the length of a process.
+             */
+            CircularProgressIndicator(
+                color = Color.Blue,
+                modifier = Modifier
+                    .height(150.dp)
+                    .width(150.dp)
+                    .padding(10.dp),
+                strokeWidth = 10.dp
+            )
 
         }
-    }
-    @Composable
-    fun CustomAlertDialog(){
-//        AlertDialog(onDismissRequest = { /*TODO*/ }) {
-//            Text(text = "Alert Dialog")
-//        }
+
+
     }
 
     @Composable
-    fun ProgressBarIndicator(){
-        CircularProgressIndicator()
-        CircularProgressIndicator(progress = 1f)
+    fun LinearProgressBarIndicator() {
+        var progress by remember {
+            mutableStateOf(0.1f)
+        }
+        val animatedProgress by animateFloatAsState(
+            targetValue = progress,
+            animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+        )
+        Row() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                LinearProgressIndicator(
+                    progress = animatedProgress,
+                    color = Color.Red,
+                    modifier = Modifier
+                        .height(10.dp)
+                        .width(200.dp)
+                        .padding(2.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                OutlinedButton(onClick = { if (progress < 1f) progress += 0.1f }) {
+                    Text(text = "Increase")
+
+                }
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            /**
+             * Progress indicators express an unspecified wait time or display the length of a process.
+             */
+            LinearProgressIndicator(
+                color = Color.Blue,
+                modifier = Modifier
+                    .height(10.dp)
+                    .width(200.dp)
+                    .padding(2.dp),
+                backgroundColor = Color.White
+            )
+
+        }
+
+
     }
 }
