@@ -36,6 +36,7 @@ import com.young.pdfreader.dialog.DialogAndSnackbarActivity
 import com.young.pdfreader.image.ImagesComponentActivity
 import com.young.pdfreader.list.ListItemComponentActivity
 import com.young.pdfreader.text.TextComponentActivity
+import com.young.pdfreader.toolbar.ToolbarComponentActivity
 import com.young.pdfreader.ui.theme.PDFreaderTheme
 
 class MainActivity : ComponentActivity() {
@@ -78,9 +79,9 @@ class MainActivity : ComponentActivity() {
                                 ComponentItems.BUTTON.name,
                                 ComponentItems.LIST.name,
                                 ComponentItems.DIALOG.name,
+                                ComponentItems.TOOLBAR.name,
                                 ComponentItems.LAYOUT.name,
                                 ComponentItems.ANIMATION.name,
-                                ComponentItems.TOOLBAR.name,
                                 ComponentItems.GESTURE.name
                             )
                         )
@@ -157,6 +158,8 @@ fun navigateToActivity(context: Context, text: String) {
             Intent(context, DialogAndSnackbarActivity::class.java)
         ComponentItems.LIST.name -> targetIntent =
             Intent(context, ListItemComponentActivity::class.java)
+        ComponentItems.TOOLBAR.name -> targetIntent =
+            Intent(context, ToolbarComponentActivity::class.java)
 
 
     }
@@ -168,23 +171,6 @@ fun navigateToActivity(context: Context, text: String) {
 
 fun showToast(context: Context, msg: String) {
     Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
-}
-
-
-@Composable
-fun BottomBarComponent() {
-    BottomAppBar(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Spacer(Modifier.weight(1f, true))
-//        IconButton(onClick = { Icon(imageVector = Icons.Filled.Favorite,contentDescription = "Favorite")}) {
-//        }
-//        IconButton(onClick = { Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu")}) {
-//        }
-        ResourceIcon()
-        ResourceIcon()
-    }
 }
 
 
