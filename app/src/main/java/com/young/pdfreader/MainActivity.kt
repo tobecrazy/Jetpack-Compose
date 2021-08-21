@@ -30,10 +30,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import com.young.pdfreader.animation.AnimationActivity
 import com.young.pdfreader.button.ButtonComponentActivity
 import com.young.pdfreader.data.ComponentItems
 import com.young.pdfreader.dialog.DialogAndSnackbarActivity
+import com.young.pdfreader.gesture.GestureActivity
 import com.young.pdfreader.image.ImagesComponentActivity
+import com.young.pdfreader.layout.LayoutActivity
 import com.young.pdfreader.list.ListItemComponentActivity
 import com.young.pdfreader.text.TextComponentActivity
 import com.young.pdfreader.toolbar.ToolbarComponentActivity
@@ -80,9 +83,10 @@ class MainActivity : ComponentActivity() {
                                 ComponentItems.LIST.name,
                                 ComponentItems.DIALOG.name,
                                 ComponentItems.TOOLBAR.name,
-                                ComponentItems.LAYOUT.name,
                                 ComponentItems.ANIMATION.name,
-                                ComponentItems.GESTURE.name
+                                ComponentItems.GESTURE.name,
+                                ComponentItems.THEMING.name,
+                                ComponentItems.LAYOUT.name
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
@@ -160,6 +164,12 @@ fun navigateToActivity(context: Context, text: String) {
             Intent(context, ListItemComponentActivity::class.java)
         ComponentItems.TOOLBAR.name -> targetIntent =
             Intent(context, ToolbarComponentActivity::class.java)
+        ComponentItems.ANIMATION.name -> targetIntent =
+            Intent(context, AnimationActivity::class.java)
+        ComponentItems.GESTURE.name -> targetIntent =
+            Intent(context, GestureActivity::class.java)
+        ComponentItems.LAYOUT.name -> targetIntent =
+            Intent(context, LayoutActivity::class.java)
 
 
     }

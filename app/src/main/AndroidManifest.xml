@@ -12,6 +12,27 @@
         android:theme="@style/Theme.PDFReader"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".layout.CardLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".layout.ConstraintLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".layout.LayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".layout.ScaffoldLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".layout.ScrollableTabLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".animation.AnimationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".gesture.GestureActivity"
+            android:exported="true" />
+        <activity
             android:name=".list.ListItemComponentActivity"
             android:exported="true" />
         <activity

@@ -9,5 +9,6 @@ enum class ComponentItems(name: String) {
     TOOLBAR("toolbar component"),
     LIST("list"),
     GESTURE("gesture"),
-    ANIMATION("animation")
+    ANIMATION("animation"),
+    THEMING("theming")
 }
