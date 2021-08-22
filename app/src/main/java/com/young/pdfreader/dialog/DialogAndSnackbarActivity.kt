@@ -7,6 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -23,10 +25,9 @@ class DialogAndSnackbarActivity : ComponentActivity() {
         setContent {
             var showDialog1 by remember { mutableStateOf(false) }
             var showDialog2 by remember { mutableStateOf(false) }
-            Column {
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 CustomSlider()
                 Divider()
-                CustomSnackBar(message = "This is a snack bar", "This is snackbar body")
                 Row() {
                     Button(onClick = { showDialog1 = true }, modifier = Modifier.padding(10.dp)) {
                         Text(text = "Dialog1")
@@ -82,12 +83,16 @@ class DialogAndSnackbarActivity : ComponentActivity() {
                         )
                     }
                 }
+                LinearProgressBarIndicator()
+                ProgressBarIndicator()
+                Divider()
+//              CustomSnackBar(message = "This is a snack bar", "This is snackbar body")
+                Divider()
 
             }
         }
     }
 
-    @ExperimentalMaterialApi
     @Composable
     fun CustomSnackBar(message: String, body: String) {
         val scaffoldState = rememberScaffoldState()
@@ -95,9 +100,6 @@ class DialogAndSnackbarActivity : ComponentActivity() {
         Snackbar(modifier = Modifier.padding(10.dp)) {
             Text(text = message)
         }
-        LinearProgressBarIndicator()
-        ProgressBarIndicator()
-
         /**
          * This components provides only the visuals of the Snackbar.
          * If you need to show a Snackbar with defaults on the screen,
