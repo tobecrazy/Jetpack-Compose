@@ -31,6 +31,7 @@ class ToolbarComponentActivity : ComponentActivity() {
                 CustomToolBar("Toolbar")
                 CustomBottomBar()
                 CustomBottomNavigation()
+                CustomDropDownMenu()
                 CustomBottomSheetScaffold("First title", "Second title")
             }
         }
@@ -196,6 +197,33 @@ class ToolbarComponentActivity : ComponentActivity() {
             }, backgroundColor = Color.LightGray
         ) {
 
+        }
+
+    }
+
+    @Composable
+    fun CustomDropDownMenu() {
+        var expandStatus by remember { mutableStateOf(false) }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .wrapContentSize(Alignment.TopStart)
+        ) {
+            IconButton(onClick = { expandStatus = true }) {
+                Icon(Icons.Default.MoreVert, "Expand", tint = Color.Blue)
+            }
+            DropdownMenu(expanded = expandStatus, onDismissRequest = { expandStatus = false }) {
+                DropdownMenuItem(onClick = { }) {
+                    Text(text = "Refresh")
+                }
+                DropdownMenuItem(onClick = { }) {
+                    Text(text = "Settings")
+                }
+                Divider()
+                DropdownMenuItem(onClick = { }) {
+                    Text(text = "Send Feedback")
+                }
+            }
         }
 
     }

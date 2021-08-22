@@ -84,9 +84,9 @@ class MainActivity : ComponentActivity() {
                                 ComponentItems.DIALOG.name,
                                 ComponentItems.TOOLBAR.name,
                                 ComponentItems.ANIMATION.name,
+                                ComponentItems.LAYOUT.name,
                                 ComponentItems.GESTURE.name,
                                 ComponentItems.THEMING.name,
-                                ComponentItems.LAYOUT.name
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
