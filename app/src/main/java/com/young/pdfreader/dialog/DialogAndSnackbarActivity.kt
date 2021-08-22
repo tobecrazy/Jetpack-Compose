@@ -23,7 +23,9 @@ class DialogAndSnackbarActivity : ComponentActivity() {
         setContent {
             var showDialog1 by remember { mutableStateOf(false) }
             var showDialog2 by remember { mutableStateOf(false) }
-            Column() {
+            Column {
+                CustomSlider()
+                Divider()
                 CustomSnackBar(message = "This is a snack bar", "This is snackbar body")
                 Row() {
                     Button(onClick = { showDialog1 = true }, modifier = Modifier.padding(10.dp)) {
@@ -222,7 +224,41 @@ class DialogAndSnackbarActivity : ComponentActivity() {
             )
 
         }
+    }
 
+    @ExperimentalMaterialApi
+    @Composable
+    fun CustomSlider() {
+        var sliderPosition by remember { mutableStateOf(0f) }
+        Column() {
+            Text(text = sliderPosition.toInt().toString(), modifier = Modifier.padding(6.dp))
+            Slider(
+                value = sliderPosition, onValueChange = { sliderPosition = it },
+                valueRange = 0f..100f,
+                onValueChangeFinished = {
+
+                }, steps = 10,
+                colors = SliderDefaults.colors(
+                    thumbColor = MaterialTheme.colors.primary,
+                    activeTickColor = MaterialTheme.colors.secondary
+                )
+            )
+
+            var sliderPositions by remember { mutableStateOf(0f..100f) }
+            Text(text = sliderPositions.toString(), modifier = Modifier.padding(6.dp))
+            RangeSlider(
+                values = sliderPositions,
+                onValueChange = { sliderPositions = it },
+                valueRange = 0f..100f,
+                onValueChangeFinished = {
+
+                }, steps = 5,
+                colors = SliderDefaults.colors(
+                    thumbColor = MaterialTheme.colors.primary,
+                    activeTickColor = MaterialTheme.colors.secondary
+                )
+            )
+        }
 
     }
 }
