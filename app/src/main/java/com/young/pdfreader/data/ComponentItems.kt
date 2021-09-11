@@ -10,5 +10,10 @@ enum class ComponentItems(name: String) {
     LIST("list"),
     GESTURE("gesture"),
     ANIMATION("animation"),
-    THEMING("theming")
+    THEMING("theming"),
+    OTHER("other")
 }
+
+val UPLOAD_REQUEST_CODE = 0x1001
+val DOWNLOAD_REQUEST_CODE = 0x1002
+val COMMON_REQUEST_CODE = 0x1111

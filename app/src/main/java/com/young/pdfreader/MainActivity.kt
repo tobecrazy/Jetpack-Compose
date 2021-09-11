@@ -38,6 +38,7 @@ import com.young.pdfreader.gesture.GestureActivity
 import com.young.pdfreader.image.ImagesComponentActivity
 import com.young.pdfreader.layout.LayoutActivity
 import com.young.pdfreader.list.ListItemComponentActivity
+import com.young.pdfreader.other.OtherActivity
 import com.young.pdfreader.text.TextComponentActivity
 import com.young.pdfreader.toolbar.ToolbarComponentActivity
 import com.young.pdfreader.ui.theme.PDFreaderTheme
@@ -87,6 +88,7 @@ class MainActivity : ComponentActivity() {
                                 ComponentItems.LAYOUT.name,
                                 ComponentItems.GESTURE.name,
                                 ComponentItems.THEMING.name,
+                                ComponentItems.OTHER.name
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
@@ -170,6 +172,8 @@ fun navigateToActivity(context: Context, text: String) {
             Intent(context, GestureActivity::class.java)
         ComponentItems.LAYOUT.name -> targetIntent =
             Intent(context, LayoutActivity::class.java)
+        ComponentItems.OTHER.name -> targetIntent =
+            Intent(context, OtherActivity::class.java)
 
 
     }

@@ -12,6 +12,18 @@
         android:theme="@style/Theme.PDFReader"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".other.RequestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".other.DownloadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".other.UploadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".other.OtherActivity"
+            android:exported="true" />
+        <activity
             android:name=".layout.CardLayoutActivity"
             android:exported="true" />
         <activity
