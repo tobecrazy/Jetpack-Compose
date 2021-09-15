@@ -29,5 +29,19 @@
             android:text="@string/act_jump"
             tools:ignore="MissingConstraints" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/translucent_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/translucent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/snackbar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/show_snackbar_button" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

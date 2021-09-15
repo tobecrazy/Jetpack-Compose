@@ -12,6 +12,10 @@
         android:theme="@style/Theme.PDFReader"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".other.TranslucentActivity"
+            android:exported="true"
+            android:theme="@style/TransparentTheme" />
+        <activity
             android:name=".other.RequestActivity"
             android:exported="true" />
         <activity

@@ -10,4 +10,6 @@
     <string name="bottom_sheet_upload">Upload</string>
     <string name="bottom_sheet_download">Download</string>
     <string name="act_jump">Activity Jump</string>
+    <string name="translucent">Translucent</string>
+    <string name="show_snackbar_button">Show Snackbar</string>
 </resources>
