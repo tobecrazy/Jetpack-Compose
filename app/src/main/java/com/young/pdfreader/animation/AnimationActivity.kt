@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.*
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.animateInt
-import androidx.compose.animation.core.keyframes
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -27,6 +24,7 @@ import androidx.compose.ui.unit.sp
  * https://developer.android.google.cn/jetpack/compose/animation
  */
 class AnimationActivity : ComponentActivity() {
+    @ExperimentalTransitionApi
     @ExperimentalMaterialApi
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,6 +79,7 @@ class AnimationActivity : ComponentActivity() {
         }
     }
 
+    @ExperimentalTransitionApi
     @ExperimentalAnimationApi
     @Composable
     fun AnimationState() {

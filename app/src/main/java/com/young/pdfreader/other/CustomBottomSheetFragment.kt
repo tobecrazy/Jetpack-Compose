@@ -45,11 +45,13 @@ class CustomBottomSheetFragment : BottomSheetDialogFragment() {
         val downloadTV = view.findViewById<AppCompatTextView>(R.id.bottom_sheet_download)
         uploadTV.setOnClickListener {
             dismiss()
+            activity?.finish()
             val uploadIntent = Intent(activity, UploadActivity::class.java)
             startActivityForResult(uploadIntent, UPLOAD_REQUEST_CODE)
         }
         downloadTV.setOnClickListener {
             dismiss()
+            activity?.finish()
             val downloadIntent = Intent(activity, DownloadActivity::class.java)
             startActivityForResult(downloadIntent, DOWNLOAD_REQUEST_CODE)
         }

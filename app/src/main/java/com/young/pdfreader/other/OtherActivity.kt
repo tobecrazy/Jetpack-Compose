@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.accessibility.AccessibilityEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.snackbar.Snackbar
@@ -23,6 +24,18 @@ class OtherActivity : AppCompatActivity(), View.OnClickListener {
         binding.requestAct.setOnClickListener(this)
         binding.translucentBtn.setOnClickListener(this)
         binding.snackbarBtn.setOnClickListener(this)
+        binding.tvContentDesc.contentDescription = getString(R.string.title)
+        binding.textviewContentDesc.contentDescription = getString(R.string.app_name)
+        binding.tvContentDesc.postDelayed(Runnable {
+            binding.tvContentDesc.contentDescription = null
+        }, 1000)
+
+        binding.textviewContentDesc.postDelayed(Runnable {
+//            binding.textviewContentDesc.requestFocus()
+            binding.textviewContentDesc.sendAccessibilityEvent(
+                AccessibilityEvent.TYPE_VIEW_FOCUSED
+            )
+        }, 800)
     }
 
     override fun onClick(view: View?) {
