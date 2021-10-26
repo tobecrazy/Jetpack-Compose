@@ -33,6 +33,7 @@ import androidx.core.content.ContextCompat.startActivity
 import com.young.pdfreader.animation.AnimationActivity
 import com.young.pdfreader.button.ButtonComponentActivity
 import com.young.pdfreader.data.ComponentItems
+import com.young.pdfreader.data.DateUtils
 import com.young.pdfreader.dialog.DialogAndSnackbarActivity
 import com.young.pdfreader.gesture.GestureActivity
 import com.young.pdfreader.image.ImagesComponentActivity
@@ -76,22 +77,41 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                         )
-                        ViewItems(
-                            values = mutableListOf(
-                                ComponentItems.TEXT.name,
-                                ComponentItems.IMAGE.name,
-                                ComponentItems.BUTTON.name,
-                                ComponentItems.LIST.name,
-                                ComponentItems.DIALOG.name,
-                                ComponentItems.TOOLBAR.name,
-                                ComponentItems.ANIMATION.name,
-                                ComponentItems.LAYOUT.name,
-                                ComponentItems.GESTURE.name,
-                                ComponentItems.THEMING.name,
-                                ComponentItems.OTHER.name
+                        val context = LocalContext.current
+                        Tab(
+                            selected = false,
+                            onClick = { showToast(context = context, "Click on tab") },
+                            modifier = Modifier.padding(1.dp)
+                        ) {
+                            Text(text = resources.getQuantityString(R.plurals.sometimes_ago, 1))
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Text(
+                                text = resources.getString(
+                                    R.string.date,
+                                    DateUtils.getYear(),
+                                    DateUtils.getMonth(),
+                                    DateUtils.getDay()
+                                )
                             )
-                        )
-                        Spacer(modifier = Modifier.height(10.dp))
+                            Spacer(modifier = Modifier.height(10.dp))
+                            ViewItems(
+                                values = mutableListOf(
+                                    ComponentItems.TEXT.name,
+                                    ComponentItems.IMAGE.name,
+                                    ComponentItems.BUTTON.name,
+                                    ComponentItems.LIST.name,
+                                    ComponentItems.DIALOG.name,
+                                    ComponentItems.TOOLBAR.name,
+                                    ComponentItems.ANIMATION.name,
+                                    ComponentItems.LAYOUT.name,
+                                    ComponentItems.GESTURE.name,
+                                    ComponentItems.THEMING.name,
+                                    ComponentItems.OTHER.name
+                                )
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+                        }
+
                     }
 
                 }
