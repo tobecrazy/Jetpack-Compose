@@ -1,27 +1,27 @@
 package com.young.pdfreader.layout
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.young.pdfreader.R
+import com.young.pdfreader.showToast
 
 /**
  * For Card / ModalBottomSheetLayout
@@ -50,13 +50,16 @@ class CardLayoutActivity : ComponentActivity() {
 
     @Composable
     fun CustomCard(title: String, description: String, ratingTitle: String) {
+        val content = LocalContext.current
         Card(
             modifier = Modifier
                 .padding(10.dp)
                 .fillMaxWidth()
-                .clickable {
-
-                },
+                .clickable(enabled = true, onClickLabel = "Clicked", role = null, onClick = {
+                    Toast
+                        .makeText(content, "Click on Card view", Toast.LENGTH_SHORT)
+                        .show()
+                }),
             elevation = 2.dp
         ) {
             Column() {
@@ -106,10 +109,16 @@ class CardLayoutActivity : ComponentActivity() {
                         modifier = Modifier.weight(2f)
                     ) {
                         repeat(5) {
-                            Icon(
-                                imageVector = Icons.Outlined.Star,
-                                contentDescription = "Star"
-                            )
+                            val context = LocalContext.current
+                            IconButton(onClick = {
+                                showToast(context = context, "Click on rating star")
+                            }) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Star,
+                                    contentDescription = "Star"
+                                )
+                            }
+
                         }
                     }
 

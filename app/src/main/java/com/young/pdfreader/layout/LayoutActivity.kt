@@ -33,6 +33,7 @@ class LayoutActivity : ComponentActivity() {
         val context = LocalContext.current
         val items = mutableListOf(
             "Card Layout",
+            "Tab Layout",
             "Constraint Layout",
             "Scaffold Layout",
             "Scrollable Tab Layout"
@@ -49,6 +50,7 @@ class LayoutActivity : ComponentActivity() {
                         val intent: Intent =
                             when (it) {
                                 "Card Layout" -> Intent(context, CardLayoutActivity::class.java)
+                                "Tab Layout" -> Intent(context, TabActivity::class.java)
                                 "Constraint Layout" -> Intent(
                                     context,
                                     ConstraintLayoutActivity::class.java

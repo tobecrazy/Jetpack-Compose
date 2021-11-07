@@ -13,7 +13,7 @@
     <string name="translucent">Translucent</string>
     <string name="show_snackbar_button">Show Snackbar</string>
     <string name="text_content_desc">When using an ImageView, ImageButton, CheckBox, or other View that conveys information graphically, use an android:contentDescription attribute to provide a content label for that View.</string>
-    <string name="date">Today is %d year %d month %d day.</string>
+    <string name="date">Today is : %d-%d-%d.</string>
     <plurals name="sometimes_ago">
         <item quantity="one">a week ago</item>
         <item quantity="two">two weeks ago</item>
