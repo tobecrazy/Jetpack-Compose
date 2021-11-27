@@ -1,7 +1,9 @@
 package com.young.pdfreader.toolbar
 
 
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -12,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -203,6 +206,7 @@ class ToolbarComponentActivity : ComponentActivity() {
 
     @Composable
     fun CustomDropDownMenu() {
+        val context = LocalContext.current
         var expandStatus by remember { mutableStateOf(false) }
         Box(
             modifier = Modifier
@@ -213,19 +217,29 @@ class ToolbarComponentActivity : ComponentActivity() {
                 Icon(Icons.Default.MoreVert, "Expand", tint = Color.Blue)
             }
             DropdownMenu(expanded = expandStatus, onDismissRequest = { expandStatus = false }) {
-                DropdownMenuItem(onClick = { }) {
+                DropdownMenuItem(onClick = {
+                    showToast(context = context, "Refresh")
+                }) {
                     Text(text = "Refresh")
                 }
-                DropdownMenuItem(onClick = { }) {
+                DropdownMenuItem(onClick = {
+                    showToast(context = context, "Settings")
+                }) {
                     Text(text = "Settings")
                 }
                 Divider()
-                DropdownMenuItem(onClick = { }) {
+                DropdownMenuItem(onClick = {
+                    showToast(context = context, "Send Feedback")
+                }) {
                     Text(text = "Send Feedback")
                 }
             }
         }
 
+    }
+
+    fun showToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 
 }

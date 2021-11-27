@@ -1,5 +1,6 @@
 package com.young.pdfreader.other
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -55,5 +56,15 @@ class CustomBottomSheetFragment : BottomSheetDialogFragment() {
             val downloadIntent = Intent(activity, DownloadActivity::class.java)
             startActivityForResult(downloadIntent, DOWNLOAD_REQUEST_CODE)
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        activity?.finish()
+    }
+
+    override fun onCancel(dialog: DialogInterface) {
+        super.onCancel(dialog)
+        activity?.finish()
     }
 }

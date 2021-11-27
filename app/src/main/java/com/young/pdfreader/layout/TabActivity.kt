@@ -3,57 +3,50 @@ package com.young.pdfreader.layout
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Icon
 import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 
 class TabActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val titles = listOf("TAB 1", "TAB 2", "TAB 3")
-            titles.forEach {
-                CustomTab(selected = true, it)
-            }
+            CustomTab()
         }
     }
 
 
     @Composable
-    fun CustomTab(selected: Boolean, title: String) {
-        val content = LocalContext.current
-        Tab(selected = selected, onClick = { /*TODO*/ }) {
-            Column(
-                modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxWidth()
-                    .height(50.dp),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(10.dp)
-                        .align(Alignment.CenterHorizontally)
-                        .background(color = if (selected) Color.Red else Color.LightGray)
-                )
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.body1,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
+    fun CustomTab() {
+        val context = LocalContext.current
+        var tabIndex by remember { mutableStateOf(0) }
+        val titles = listOf("TAB 1", "TAB 2", "TAB 3")
+        val icons = listOf(Icons.Outlined.Home, Icons.Outlined.Favorite, Icons.Outlined.Person)
 
+        TabRow(selectedTabIndex = tabIndex) {
+            titles.forEachIndexed { index, text ->
+                Tab(
+                    selected = tabIndex == index,
+                    onClick = { tabIndex = index },
+                    icon = {
+                        Icon(
+                            imageVector = icons[index],
+                            contentDescription = text
+                        )
+                    },
+                    text = { Text(text = text) },
+                    selectedContentColor = Color.Red,
+                    unselectedContentColor = Color.LightGray,
+                )
             }
-
         }
 
     }

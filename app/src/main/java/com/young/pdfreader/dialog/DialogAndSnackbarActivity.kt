@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -172,12 +173,12 @@ class DialogAndSnackbarActivity : ComponentActivity() {
              * Progress indicators express an unspecified wait time or display the length of a process.
              */
             CircularProgressIndicator(
-                color = Color.Blue,
+                color = Color.Green,
                 modifier = Modifier
                     .height(150.dp)
                     .width(150.dp)
                     .padding(10.dp),
-                strokeWidth = 10.dp
+                strokeWidth = 15.dp
             )
 
         }

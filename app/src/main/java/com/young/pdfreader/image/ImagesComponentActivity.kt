@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -44,6 +46,9 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.databinding.DataBindingUtil
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
 import com.young.pdfreader.R
 import com.young.pdfreader.databinding.ActivityImagesBinding
 
@@ -57,7 +62,8 @@ class ImagesComponentActivity : AppCompatActivity() {
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_images)
         databinding.imagesComposeView.setContent {
             val context = LocalContext.current
-            Column {
+
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 CircleImages(
                     resourceId = R.drawable.look,
                     contentDescription = "Open CV"
@@ -113,8 +119,10 @@ class ImagesComponentActivity : AppCompatActivity() {
         }
     }
 
+    @ExperimentalCoilApi
     @Composable
     fun Images(resourceId: Int, contentDescription: String) {
+        val content = LocalContext.current
         Image(
             painter = painterResource(resourceId),
             contentDescription = contentDescription,
@@ -125,8 +133,36 @@ class ImagesComponentActivity : AppCompatActivity() {
                 .clip(shape = CircleShape),
             contentScale = ContentScale.Fit
         )
+        //https://coil-kt.github.io/coil/compose/
+        Divider()
+        val urls = mutableListOf<String>(
+            "https://www.sap.cn/content/dam/application/shared/logos/sap-logo-china-svg.svg",
+            "https://github.com/coil-kt/coil/raw/main/logo.svg",
+            "https://via.placeholder.com/300.png"
+        )
+        urls.forEach {
+            val painter = rememberImagePainter(it)
+            Image(
+                painter = painter,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .then(
+                        (painter.state as? ImagePainter.State.Success)
+                            ?.painter
+                            ?.intrinsicSize
+                            ?.let { intrinsicSize ->
+                                Modifier.aspectRatio(intrinsicSize.width / intrinsicSize.height)
+                            } ?: Modifier
+                    )
+            )
+            Divider()
+        }
+
     }
 
+    @ExperimentalCoilApi
     @Composable
     fun CircleImages(resourceId: Int, contentDescription: String) {
         Card(
