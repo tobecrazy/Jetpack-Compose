@@ -11,6 +11,7 @@
     <application
         android:name=".common.PdfReaderApplication"
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:appCategory="productivity"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

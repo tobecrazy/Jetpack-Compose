@@ -2,8 +2,10 @@ package com.young.pdfreader.other
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -24,7 +26,7 @@ class RequestActivity : ComponentActivity() {
     private lateinit var filePath: String
     private val REQUEST_CODE = 0x1111
     private val REQUEST_EXTERNAL_STORAGE = 1
-    private val PERMISSIONS_STORAGE = arrayOf<String>(
+    private val PERMISSIONS_STORAGE = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
@@ -58,6 +60,9 @@ class RequestActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         verifyStoragePermissions(activity = this)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            
+        }
         filePath =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path + "/test.txt"
         setContent {
@@ -73,25 +78,6 @@ class RequestActivity : ComponentActivity() {
             }
         }
     }
-
-    fun openFile() {
-        startActivityForResult(
-            Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = "*/*"
-                putExtra(
-                    Intent.EXTRA_MIME_TYPES, arrayOf(
-                        "application/pdf", // .pdf
-                        "application/vnd.oasis.opendocument.text", // .odt
-                        "text/plain" // .txt
-                    )
-                )
-            },
-            REQUEST_CODE
-        )
-    }
-
     fun readFile(filePath: String): String {
         //for ANR
         Thread.sleep(10000)
