@@ -1,10 +1,11 @@
 package com.young.pdfreader
 
-import androidx.compose.ui.test.assertIsDisplayed
+import android.os.SystemClock
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.young.pdfreader.data.ComponentItems
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -29,10 +30,17 @@ class MainActivityTest {
     }
 
     @Test
-    fun testDateStr() {
-        val text = InstrumentationRegistry.getInstrumentation()
+    fun testComposeUIComponent() {
+        val titleStr = InstrumentationRegistry.getInstrumentation()
             .targetContext.resources.getString(R.string.title)
-        composeTestRule.onNodeWithText(text).assertIsDisplayed()
+        composeTestRule.onNodeWithText(titleStr).assertIsDisplayed()
+        //Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains 'IMAGE' (ignoreCase: false))
+        composeTestRule.onAllNodesWithText(ComponentItems.TEXT.name).assertAll(hasClickAction())
+        composeTestRule
+            .onAllNodes(hasText(ComponentItems.TEXT.name)).filter(hasClickAction()).onLast()
+            .performClick()
+        SystemClock.sleep(3000)
+        composeTestRule.onNodeWithText("PDFReader").assertIsDisplayed()
     }
 
 }

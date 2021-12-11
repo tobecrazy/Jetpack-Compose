@@ -23,8 +23,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Observer
 import coil.compose.rememberImagePainter
 import com.young.pdfreader.R
+import com.young.pdfreader.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
 /**
@@ -37,15 +39,29 @@ class LayoutActivity : ComponentActivity() {
         setContent {
             Column(modifier = Modifier.padding(2.dp)) {
                 LayoutOption()
-                RecyclerViewComposeUI()
+                SetUpListView()
             }
         }
 
     }
 
-    @Composable
     @Preview
-    fun RecyclerViewComposeUI() {
+    @Composable
+    fun SetUpListView() {
+        val context = LocalContext.current
+        val viewModel = MainViewModel()
+        if (viewModel.uiState.value == MainViewModel.State.LOADING) {
+            RecyclerViewComposeUI("https://www.sap.cn/content/dam/application/shared/images/country-flags/cn@2x.png")
+        }
+        viewModel.urlLiveData.observe(this, Observer {
+            if (it != null) {
+//                RecyclerViewComposeUI(it)
+            }
+        })
+    }
+
+    @Composable
+    fun RecyclerViewComposeUI(url: String) {
         val lazySize = 100
         val scrollState = rememberLazyListState()
         // We save the coroutine scope where our animated scroll will be executed
@@ -76,7 +92,7 @@ class LayoutActivity : ComponentActivity() {
                     Text(text = "Item is #$it", modifier = Modifier.padding(2.dp))
                     CardView(
                         it,
-                        "https://www.sap.cn/content/dam/application/shared/images/country-flags/cn@2x.png"
+                        url = url
                     )
                 }
             }

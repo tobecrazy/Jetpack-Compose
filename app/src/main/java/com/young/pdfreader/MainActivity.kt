@@ -232,7 +232,8 @@ fun CardComponent() {
 
 @Composable
 fun ResourceIcon() {
-    Icon(imageVector = Icons.Filled.Close, contentDescription = "Close")
+    val desc = stringResource(id = R.string.a11y_close)
+    Icon(imageVector = Icons.Filled.Close, contentDescription = desc)
 //    Icon(
 //        painter = painterResource(R.drawable.ic_description_24),
 //        contentDescription = "print"
