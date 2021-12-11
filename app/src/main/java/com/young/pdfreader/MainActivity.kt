@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.*
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
@@ -45,13 +49,16 @@ import com.young.pdfreader.toolbar.ToolbarComponentActivity
 import com.young.pdfreader.ui.theme.PDFreaderTheme
 
 class MainActivity : ComponentActivity() {
+    val isDarkTheme = false
+
+    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PDFreaderTheme(darkTheme = false) {
+            //set Dark mode
+            PDFreaderTheme(darkTheme = isDarkTheme) {
                 Scaffold(Modifier.background(Color.White)) {
                     Column(
-                        modifier = Modifier.verticalScroll(rememberScrollState()),
                         verticalArrangement = Arrangement.Top
                     ) {
                         TopAppBar(
@@ -94,20 +101,21 @@ class MainActivity : ComponentActivity() {
                                 )
                             )
                             Spacer(modifier = Modifier.height(10.dp))
+                            val values = mutableListOf(
+                                ComponentItems.TEXT.name,
+                                ComponentItems.IMAGE.name,
+                                ComponentItems.BUTTON.name,
+                                ComponentItems.LIST.name,
+                                ComponentItems.DIALOG.name,
+                                ComponentItems.TOOLBAR.name,
+                                ComponentItems.ANIMATION.name,
+                                ComponentItems.LAYOUT.name,
+                                ComponentItems.GESTURE.name,
+                                ComponentItems.THEMING.name,
+                                ComponentItems.OTHER.name
+                            )
                             ViewItems(
-                                values = mutableListOf(
-                                    ComponentItems.TEXT.name,
-                                    ComponentItems.IMAGE.name,
-                                    ComponentItems.BUTTON.name,
-                                    ComponentItems.LIST.name,
-                                    ComponentItems.DIALOG.name,
-                                    ComponentItems.TOOLBAR.name,
-                                    ComponentItems.ANIMATION.name,
-                                    ComponentItems.LAYOUT.name,
-                                    ComponentItems.GESTURE.name,
-                                    ComponentItems.THEMING.name,
-                                    ComponentItems.OTHER.name
-                                )
+                                values = values, isDarkTheme
                             )
                             Spacer(modifier = Modifier.height(10.dp))
                         }
@@ -120,37 +128,51 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ *  Caution: Experimental APIs can change in the future or may be removed entirely.
+ */
+@ExperimentalFoundationApi
 @Composable
-fun ViewItems(values: List<String>) {
-    Column(
+fun ViewItems(values: List<String>, isDarkTheme: Boolean = false) {
+    LazyColumn(
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth()
     ) {
-        values.forEach {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-            ) {
-                ShowItem(value = it)
-                CustomButton(text = it)
-            }
-            Divider(color = Color.Blue, modifier = Modifier.height(2.dp))
-            Spacer(modifier = Modifier.padding(8.dp))
+        stickyHeader {
+            ShowItem("Sticky Header")
+        }
+
+        items(values.size) {
+            UIComponentItem(name = values[it], isDarkTheme = false)
         }
     }
 }
 
 @Composable
-fun ShowItem(value: String) {
+fun UIComponentItem(name: String, isDarkTheme: Boolean = false) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+    ) {
+        ShowItem(value = name, isDarkTheme)
+        CustomButton(text = name)
+    }
+    Divider(color = Color.Blue, modifier = Modifier.height(2.dp))
+    Spacer(modifier = Modifier.padding(8.dp))
+}
+
+@Composable
+fun ShowItem(value: String, isDarkTheme: Boolean = false) {
     Text(
         text = value,
         textAlign = TextAlign.Left,
         style = TextStyle(
             fontSize = 16.sp,
-            color = Color.Black
+            color = if (isDarkTheme) Color.White else Color.Black
         ),
+        color = if (isDarkTheme) Color.White else Color.Black,
         modifier = Modifier.padding(12.dp)
     )
 }
