@@ -2,6 +2,7 @@ package com.young.pdfreader
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -20,7 +21,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
@@ -33,6 +34,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.layoutId
 import androidx.core.content.ContextCompat.startActivity
 import com.young.pdfreader.animation.AnimationActivity
 import com.young.pdfreader.button.ButtonComponentActivity
@@ -43,6 +45,7 @@ import com.young.pdfreader.gesture.GestureActivity
 import com.young.pdfreader.image.ImagesComponentActivity
 import com.young.pdfreader.layout.LayoutActivity
 import com.young.pdfreader.list.ListItemComponentActivity
+import com.young.pdfreader.migrate.MigrateActivity
 import com.young.pdfreader.other.OtherActivity
 import com.young.pdfreader.text.TextComponentActivity
 import com.young.pdfreader.toolbar.ToolbarComponentActivity
@@ -90,18 +93,8 @@ class MainActivity : ComponentActivity() {
                             onClick = { showToast(context = context, "Click on tab") },
                             modifier = Modifier.padding(1.dp)
                         ) {
-                            Text(text = resources.getQuantityString(R.plurals.sometimes_ago, 1))
-                            Spacer(modifier = Modifier.height(10.dp))
-                            Text(
-                                text = resources.getString(
-                                    R.string.date,
-                                    DateUtils.getYear(),
-                                    DateUtils.getMonth(),
-                                    DateUtils.getDay()
-                                )
-                            )
-                            Spacer(modifier = Modifier.height(10.dp))
                             val values = mutableListOf(
+                                ComponentItems.MIGRATE.name,
                                 ComponentItems.TEXT.name,
                                 ComponentItems.IMAGE.name,
                                 ComponentItems.BUTTON.name,
@@ -118,8 +111,8 @@ class MainActivity : ComponentActivity() {
                                 values = values, isDarkTheme
                             )
                             Spacer(modifier = Modifier.height(10.dp))
+                            CardComponent()
                         }
-
                     }
 
                 }
@@ -140,13 +133,59 @@ fun ViewItems(values: List<String>, isDarkTheme: Boolean = false) {
             .fillMaxWidth()
     ) {
         stickyHeader {
-            ShowItem("Sticky Header")
+            //set header
+            SetHeader()
         }
-
+        //set list item
         items(values.size) {
             UIComponentItem(name = values[it], isDarkTheme = false)
         }
     }
+}
+
+@Composable
+fun SetHeader() {
+    val context = LocalContext.current
+    val resources: Resources = context.resources
+    Column(
+        modifier = Modifier
+            .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+            .alpha(0.9f)
+            .wrapContentHeight()
+            .fillMaxWidth()
+            .layoutId(layoutId = "Header", tag = "Header name")
+    ) {
+        Text(
+            text = resources.getQuantityString(R.plurals.sometimes_ago, 1),
+            modifier = Modifier
+                .alpha(0.9f)
+                .padding(6.dp)
+                .background(Color.Blue, RoundedCornerShape(4.dp))
+                .shadow(elevation = 2.dp)
+                .wrapContentHeight()
+                .wrapContentWidth()
+                .rotate(10f)
+                .scale(0.8f),
+            color = Color.Red
+        )
+        Spacer(
+            modifier = Modifier
+                .height(10.dp)
+                .size(300.dp)
+                .fillMaxHeight()
+                .padding(1.dp)
+        )
+        Text(
+            text = resources.getString(
+                R.string.date,
+                DateUtils.getYear(),
+                DateUtils.getMonth(),
+                DateUtils.getDay()
+            )
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+    }
+
 }
 
 @Composable
@@ -196,6 +235,8 @@ fun CustomButton(text: String) {
 fun navigateToActivity(context: Context, text: String) {
     var targetIntent: Intent? = null
     when (text) {
+        ComponentItems.MIGRATE.name -> targetIntent =
+            Intent(context, MigrateActivity::class.java)
         ComponentItems.TEXT.name -> targetIntent =
             Intent(context, TextComponentActivity::class.java)
         ComponentItems.IMAGE.name -> targetIntent =

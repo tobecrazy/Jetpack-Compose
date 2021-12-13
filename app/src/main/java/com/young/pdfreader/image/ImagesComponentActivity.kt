@@ -160,15 +160,19 @@ class ImagesComponentActivity : AppCompatActivity() {
                 "https://www.sap.cn/content/dam/application/shared/logos/sap-logo-china-svg.svg",
                 "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
             )
+
             //grey image crop
             var painter = rememberImagePainter(
                 data = urls[0],
                 builder = {
                     crossfade(true)
                     placeholder(R.drawable.placeholder)
-                    transformations(listOf(GrayscaleTransformation(), CircleCropTransformation()))
+                    transformations(listOf(GrayscaleTransformation(),
+                        CircleCropTransformation()))
                 }
             )
+
+
             Spacer(modifier = Modifier.height(10.dp))
             Image(
                 modifier = Modifier

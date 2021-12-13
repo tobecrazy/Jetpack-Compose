@@ -2,24 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.young.pdfreader">
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
     <application
         android:name=".common.PdfReaderApplication"
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:appCategory="productivity"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDFReader"
-        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
+        <activity
+            android:name=".migrate.MigrateActivity"
+            android:exported="false" />
         <activity
             android:name=".layout.TabActivity"
             android:exported="false" />
@@ -29,8 +34,8 @@
             android:theme="@style/TransparentTheme" />
         <activity
             android:name=".other.RequestActivity"
-            android:hardwareAccelerated="false"
-            android:exported="true" />
+            android:exported="true"
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".other.DownloadActivity"
             android:exported="true" />
@@ -86,6 +91,7 @@
             android:theme="@style/Theme.PDFReader.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

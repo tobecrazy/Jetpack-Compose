@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PDFReader</string>
     <string name="title">Compose UI Main</string>
+    <string name="migrate_desc">State and Jetpack Compose</string>
     <string name="a11y_close">Close</string>
     <string name="current_year">Current is %d Year</string>
     <string name="text_in_compose">Text is a central piece of any UI, and Jetpack Compose makes it easier to display or write text. Compose leverages composition of its building blocks, meaning you don’t need to overwrite properties and methods or extend big classes to have a specific composable design and logic working the way you want.

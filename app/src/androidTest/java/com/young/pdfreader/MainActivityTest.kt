@@ -34,13 +34,14 @@ class MainActivityTest {
         val titleStr = InstrumentationRegistry.getInstrumentation()
             .targetContext.resources.getString(R.string.title)
         composeTestRule.onNodeWithText(titleStr).assertIsDisplayed()
-        //Reason: Expected exactly '1' node but found '2' nodes that satisfy: (Text + EditableText contains 'IMAGE' (ignoreCase: false))
+        //Reason: Expected exactly '1' node but found '2' nodes that satisfy:
+        // (Text + EditableText contains 'IMAGE' (ignoreCase: false))
         composeTestRule.onAllNodesWithText(ComponentItems.TEXT.name).assertAll(hasClickAction())
         composeTestRule
             .onAllNodes(hasText(ComponentItems.TEXT.name)).filter(hasClickAction()).onLast()
             .performClick()
-        SystemClock.sleep(3000)
-        composeTestRule.onNodeWithText("PDFReader").assertIsDisplayed()
+        SystemClock.sleep(1000)
+        composeTestRule.onNodeWithText("Display String Directly").assertIsDisplayed()
     }
 
 }

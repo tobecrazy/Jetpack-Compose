@@ -1,6 +1,7 @@
 package com.young.pdfreader.data
 
 enum class ComponentItems(name: String) {
+    MIGRATE("migrate"),
     TEXT("text component"),
     IMAGE("image component"),
     BUTTON("button component"),

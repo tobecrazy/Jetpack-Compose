@@ -61,6 +61,7 @@ class ButtonComponentActivity : ComponentActivity() {
 
     @Composable
     fun CustomButton(isEnable: Boolean, text: String) {
+
         Button(onClick = {}, enabled = isEnable, modifier = Modifier.padding(10.dp)) {
             Icon(
                 Icons.Filled.Favorite,
@@ -70,6 +71,7 @@ class ButtonComponentActivity : ComponentActivity() {
             Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
             Text(text)
         }
+
     }
 
     @Composable

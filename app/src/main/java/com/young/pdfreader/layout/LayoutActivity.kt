@@ -18,6 +18,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,10 +40,39 @@ class LayoutActivity : ComponentActivity() {
         setContent {
             Column(modifier = Modifier.padding(2.dp)) {
                 LayoutOption()
+                BoxLayout()
                 SetUpListView()
             }
         }
 
+    }
+
+    @Composable
+    fun BoxLayout() {
+        Box(
+            Modifier
+                .height(80.dp)
+                .width(100.dp)) {
+            Text("This Box Layout", modifier = Modifier.align(Alignment.TopCenter))
+            Box(
+                Modifier
+                    .align(Alignment.TopCenter)
+                    .height(50.dp)
+                    .width(
+                        100.dp
+                    )
+                    .background(Color.Blue)
+            )
+            Text("Box Layout", modifier = Modifier.align(Alignment.Center))
+            FloatingActionButton(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(12.dp),
+                onClick = {}
+            ) {
+                Text("+")
+            }
+        }
     }
 
     @Preview
@@ -167,6 +197,7 @@ class LayoutActivity : ComponentActivity() {
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
             ) {
+
                 Image(
                     painter = rememberImagePainter(
                         data = url
@@ -174,6 +205,8 @@ class LayoutActivity : ComponentActivity() {
                     contentDescription = url,
                     modifier = Modifier.size(480.dp)
                 )
+
+
             }
             Column(
                 modifier = Modifier
