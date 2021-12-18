@@ -2,7 +2,6 @@ package com.young.pdfreader.list
 
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -23,8 +22,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.young.pdfreader.base.BaseActivity
 
-class ListItemComponentActivity : ComponentActivity() {
+class ListItemComponentActivity : BaseActivity()  {
     @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,19 +37,19 @@ class ListItemComponentActivity : ComponentActivity() {
                     null,
                     "This is a long overLine Text  for the current list item"
                 ), Items(
-                    "Title",
+                    "text -- Title",
                     "This component can be used to achieve the list item templates existing in the spec",
                     Icons.Rounded.Favorite,
                     null,
                     "This is a long overLine Text  for the current list item"
                 ), Items(
-                    "Title",
-                    "This component can be used to achieve the list item templates existing in the spec",
+                    "text -- Title ",
+                    "Secondary Text -- This component can be used to achieve the list item templates existing in the spec",
                     Icons.Rounded.Person,
                     null,
-                    "This is a long overLine Text  for the current list item"
+                    "overLine Text -- This is a long overLine Text  for the current list item"
                 ), Items(
-                    "Title",
+                    "text -- Title",
                     "This component can be used to achieve the list item templates existing in the spec",
                     Icons.Rounded.Email,
                     null,
@@ -165,20 +165,14 @@ class ListItemComponentActivity : ComponentActivity() {
                         Icon(
                             imageVector = iconId,
                             contentDescription = it.contentDescription,
-                            modifier = Modifier
-                                .padding(10.dp)
-                                .size(48.dp)
-                        )
+                            modifier = Modifier.padding(10.dp).size(48.dp))
                     }
                 }, secondaryText = {
-                    Text(
-                        text = it.description,
-                        style = TextStyle(
+                    Text(text = it.description, style = TextStyle(
                             color = Color.Black,
                             textAlign = TextAlign.Start,
                             fontSize = 12.sp
-                        ),
-                        maxLines = 3
+                        ), maxLines = 3
                     )
 
                 }, singleLineSecondaryText = false, text = {

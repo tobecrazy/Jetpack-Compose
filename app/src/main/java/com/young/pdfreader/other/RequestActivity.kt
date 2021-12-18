@@ -2,14 +2,11 @@ package com.young.pdfreader.other
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
@@ -19,10 +16,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
+import com.young.pdfreader.base.BaseActivity
 import java.io.*
 
 
-class RequestActivity : ComponentActivity() {
+class RequestActivity : BaseActivity()  {
     private lateinit var filePath: String
     private val REQUEST_CODE = 0x1111
     private val REQUEST_EXTERNAL_STORAGE = 1

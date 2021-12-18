@@ -54,7 +54,6 @@ import coil.decode.SvgDecoder
 import coil.transform.BlurTransformation
 import coil.transform.CircleCropTransformation
 import coil.transform.GrayscaleTransformation
-import coil.transform.RoundedCornersTransformation
 import com.young.pdfreader.R
 import com.young.pdfreader.databinding.ActivityImagesBinding
 

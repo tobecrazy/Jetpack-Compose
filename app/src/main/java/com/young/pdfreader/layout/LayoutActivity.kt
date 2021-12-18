@@ -3,7 +3,6 @@ package com.young.pdfreader.layout
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -27,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import coil.compose.rememberImagePainter
 import com.young.pdfreader.R
+import com.young.pdfreader.base.BaseActivity
 import com.young.pdfreader.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
  * All Layout
  * https://developer.android.google.cn/codelabs/jetpack-compose-layouts?continue=https%3A%2F%2Fdeveloper.android.google.cn%2Fcourses%2Fpathways%2Fcompose%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-layouts#2
  */
-class LayoutActivity : ComponentActivity() {
+class LayoutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

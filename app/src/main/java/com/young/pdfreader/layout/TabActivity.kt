@@ -1,7 +1,6 @@
 package com.young.pdfreader.layout
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Icon
 import androidx.compose.material.Tab
@@ -14,8 +13,9 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import com.young.pdfreader.base.BaseActivity
 
-class TabActivity : ComponentActivity() {
+class TabActivity : BaseActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

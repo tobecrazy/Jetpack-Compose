@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -37,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.layoutId
 import androidx.core.content.ContextCompat.startActivity
 import com.young.pdfreader.animation.AnimationActivity
+import com.young.pdfreader.base.BaseActivity
 import com.young.pdfreader.button.ButtonComponentActivity
 import com.young.pdfreader.data.ComponentItems
 import com.young.pdfreader.data.DateUtils
@@ -51,7 +51,7 @@ import com.young.pdfreader.text.TextComponentActivity
 import com.young.pdfreader.toolbar.ToolbarComponentActivity
 import com.young.pdfreader.ui.theme.PDFreaderTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
     val isDarkTheme = false
 
     @ExperimentalFoundationApi

@@ -4,7 +4,6 @@ package com.young.pdfreader.toolbar
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -19,9 +18,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.young.pdfreader.base.BaseActivity
 import kotlinx.coroutines.launch
 
-class ToolbarComponentActivity : ComponentActivity() {
+class ToolbarComponentActivity : BaseActivity() {
 
     @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -196,6 +196,7 @@ class TextComponentActivity : AppCompatActivity() {
     @Composable
     fun InputText(message: String) {
         val context = LocalContext.current
+
         var text by remember {
             mutableStateOf(message)
         }
@@ -203,11 +204,12 @@ class TextComponentActivity : AppCompatActivity() {
         var password by rememberSaveable {
             mutableStateOf(message)
         }
+
         Column() {
             TextField(
                 value = text,
                 onValueChange = { text = it },
-                label = { Text("Label") },
+                label = { Text("Label $text") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()

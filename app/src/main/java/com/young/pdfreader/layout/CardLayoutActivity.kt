@@ -2,7 +2,6 @@ package com.young.pdfreader.layout
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -21,12 +20,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.young.pdfreader.R
+import com.young.pdfreader.base.BaseActivity
 import com.young.pdfreader.showToast
 
 /**
  * For Card / ModalBottomSheetLayout
  */
-class CardLayoutActivity : ComponentActivity() {
+class CardLayoutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
