@@ -23,6 +23,7 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.young.pdfreader.base.BaseActivity
+import com.young.pdfreader.base.BaseUI
 
 
 class ButtonComponentActivity : BaseActivity() {
@@ -30,32 +31,37 @@ class ButtonComponentActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(modifier = Modifier.padding(10.dp)) {
-                Row() {
-                    Column() {
-                        CustomButton(isEnable = true, text = "Click Me Enable")
-                        CustomButton(isEnable = false, text = "Click Me Disable")
+            Column() {
+                BaseUI.initialTopAppBar(this@ButtonComponentActivity)
+                Column(modifier = Modifier.padding(10.dp)) {
+                    Row() {
+                        Column() {
+                            CustomButton(isEnable = true, text = "Click Me Enable")
+                            CustomButton(isEnable = false, text = "Click Me Disable")
+                        }
+                        Column() {
+                            FloatingButton(
+                                isAddButton = true,
+                                message = "Floating add button clicked"
+                            )
+                            FloatingButton(
+                                isFilledType = false,
+                                isAddButton = false,
+                                message = "Floating edit button clicked"
+                            )
+                        }
                     }
-                    Column() {
-                        FloatingButton(isAddButton = true, message = "Floating add button clicked")
-                        FloatingButton(
-                            isFilledType = false,
-                            isAddButton = false,
-                            message = "Floating edit button clicked"
-                        )
-                    }
+                    CustomExtendFloatingButton()
+                    CustomTextButton()
+                    CustomCheckBox(isEnable = true, description = "Checkbox demo")
+                    CustomCheckBox(isEnable = false, description = "Checkbox demo disable")
+                    CustomTriStateCheckBox(isEnable = true)
+                    CustomIconButton()
+                    CustomRadioButton()
+                    SwitchButton()
+                    CustomOutLinedButton()
                 }
-                CustomExtendFloatingButton()
-                CustomTextButton()
-                CustomCheckBox(isEnable = true, description = "Checkbox demo")
-                CustomCheckBox(isEnable = false, description = "Checkbox demo disable")
-                CustomTriStateCheckBox(isEnable = true)
-                CustomIconButton()
-                CustomRadioButton()
-                SwitchButton()
-                CustomOutLinedButton()
             }
-
         }
     }
 

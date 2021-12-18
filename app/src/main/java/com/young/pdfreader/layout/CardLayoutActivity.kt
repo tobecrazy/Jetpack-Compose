@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.young.pdfreader.R
 import com.young.pdfreader.base.BaseActivity
-import com.young.pdfreader.showToast
+import com.young.pdfreader.base.BaseUI.showToast
 
 /**
  * For Card / ModalBottomSheetLayout
