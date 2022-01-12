@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 /**
  * Create by Young on 12/18/2021
  **/
-abstract class BaseActivity : ComponentActivity() {
+open class BaseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

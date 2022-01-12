@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -39,6 +41,7 @@ class MigrateActivity : AppCompatActivity() {
                 MigrateTextLayout()
                 Spacer(modifier = Modifier.padding(2.dp))
                 MessageBoard()
+                typeInputBox()
             }
         }
 
@@ -53,6 +56,7 @@ class MigrateActivity : AppCompatActivity() {
         })
     }
 
+
     @Composable
     private fun MigrateTextLayout() {
         val viewModel: MainViewModel = viewModel(factory = PDFReaderViewModelFactory())
@@ -65,6 +69,16 @@ class MigrateActivity : AppCompatActivity() {
                 .padding(horizontal = dimensionResource(R.dimen.margin_small))
                 .wrapContentWidth(Alignment.CenterHorizontally)
         )
+    }
+
+
+    @Composable
+    fun typeInputBox() {
+        val viewModel: MainViewModel = viewModel(factory = PDFReaderViewModelFactory())
+        val message by viewModel.message.observeAsState(initial = "Text")
+        TextField(value = message, onValueChange = {
+            viewModel.message.value = it
+        })
     }
 
     val MessageBoard = @Composable {
@@ -85,5 +99,14 @@ class MigrateActivity : AppCompatActivity() {
 
     fun Dashboard(composeParam: @Composable () -> Unit) {
 
+    }
+
+    @Preview
+    @Composable
+    fun previewUI() {
+        Column() {
+            MigrateTextLayout()
+            typeInputBox()
+        }
     }
 }

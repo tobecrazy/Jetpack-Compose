@@ -106,6 +106,7 @@ class MainActivity : BaseActivity() {
      */
     @ExperimentalFoundationApi
     @Composable
+    @Preview
     fun ViewItems(values: List<String>, isDarkTheme: Boolean = false) {
         LazyColumn(
             modifier = Modifier
@@ -124,6 +125,7 @@ class MainActivity : BaseActivity() {
     }
 
     @Composable
+    @Preview
     fun SetHeader() {
         val context = LocalContext.current
         val resources: Resources = context.resources
@@ -169,6 +171,7 @@ class MainActivity : BaseActivity() {
     }
 
     @Composable
+    @Preview
     fun UIComponentItem(name: String, isDarkTheme: Boolean = false) {
         Row(
             modifier = Modifier
@@ -197,6 +200,7 @@ class MainActivity : BaseActivity() {
     }
 
     @Composable
+    @Preview
     fun CustomButton(text: String) {
         val context = LocalContext.current
         Button(
@@ -252,6 +256,7 @@ class MainActivity : BaseActivity() {
 
 
     @Composable
+    @Preview
     fun CardComponent() {
         Card(
             shape = RoundedCornerShape(6.dp),
@@ -284,6 +289,7 @@ class MainActivity : BaseActivity() {
     }
 
     @Composable
+    @Preview
     fun NewsRepo(name: String) {
         MaterialTheme {
             Column(
@@ -346,6 +352,7 @@ class MainActivity : BaseActivity() {
 
 
     @Preview(showBackground = true, name = "Text")
+    @Preview
     @Composable
     fun DefaultPreview() {
         PDFreaderTheme {

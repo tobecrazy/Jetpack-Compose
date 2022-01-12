@@ -62,5 +62,62 @@
             android:padding="10dp"
             android:text="@string/show_snackbar_button" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:max="100"
+                android:progress="0" />
+
+            <EditText
+                android:id="@+id/seekbar_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:editable="false"
+                android:inputType="number"
+                android:maxLines="1"
+                android:text="0%"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:value="60"
+            android:valueFrom="0"
+            android:valueTo="100" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:enabled="true" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_compat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:enabled="true" />
+
+        </LinearLayout>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

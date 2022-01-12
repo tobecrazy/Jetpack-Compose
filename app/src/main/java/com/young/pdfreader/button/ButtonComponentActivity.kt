@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.young.pdfreader.base.BaseActivity
 import com.young.pdfreader.base.BaseUI
+import com.young.pdfreader.viewmodel.MainViewModel
 
 
 class ButtonComponentActivity : BaseActivity() {
@@ -67,7 +68,6 @@ class ButtonComponentActivity : BaseActivity() {
 
     @Composable
     fun CustomButton(isEnable: Boolean, text: String) {
-
         Button(onClick = {}, enabled = isEnable, modifier = Modifier.padding(10.dp)) {
             Icon(
                 Icons.Filled.Favorite,
@@ -99,8 +99,16 @@ class ButtonComponentActivity : BaseActivity() {
     @Composable
     fun FloatingButton(isFilledType: Boolean = true, isAddButton: Boolean, message: String) {
         val context = LocalContext.current
+        val viewModel = MainViewModel()
+
+        var count by remember {
+            mutableStateOf(1)
+        }
         FloatingActionButton(
-            onClick = { showToast(context = context, message) },
+            onClick = {
+                showToast(context = context, "$message times $count")
+                count ++
+            },
             modifier = Modifier
                 .padding(8.dp),
             backgroundColor = Color.Green,
@@ -281,7 +289,7 @@ class ButtonComponentActivity : BaseActivity() {
         }
     }
 
-    fun showToast(context: Context, msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+    private fun showToast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 }
