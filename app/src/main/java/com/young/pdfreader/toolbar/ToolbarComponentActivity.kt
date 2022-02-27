@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 class ToolbarComponentActivity : BaseActivity() {
 
-    @ExperimentalMaterialApi
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

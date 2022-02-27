@@ -63,7 +63,6 @@ import com.young.pdfreader.databinding.ActivityImagesBinding
 class ImagesComponentActivity : AppCompatActivity() {
     lateinit var databinding: ActivityImagesBinding
 
-    @ExperimentalCoilApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         databinding = DataBindingUtil.setContentView(this, R.layout.activity_images)

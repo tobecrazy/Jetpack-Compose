@@ -133,7 +133,8 @@ class TextComponentActivity : AppCompatActivity() {
                         showToast(context = context, "Click on text ${txt.value} times!")
                         txt.value += 1
                     })
-                .padding(10.dp)
+                .padding(10.dp),
+            textAlign = TextAlign.Justify
         )
     }
 

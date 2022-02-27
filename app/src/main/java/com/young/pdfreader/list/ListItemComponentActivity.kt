@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.young.pdfreader.base.BaseActivity
 
 class ListItemComponentActivity : BaseActivity()  {
-    @ExperimentalMaterialApi
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

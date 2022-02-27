@@ -24,9 +24,11 @@ import androidx.compose.ui.unit.sp
  * https://developer.android.google.cn/jetpack/compose/animation
  */
 class AnimationActivity : ComponentActivity() {
-    @ExperimentalTransitionApi
-    @ExperimentalMaterialApi
-    @ExperimentalAnimationApi
+    @OptIn(
+        ExperimentalAnimationApi::class,
+        ExperimentalTransitionApi::class,
+        ExperimentalMaterialApi::class
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -144,16 +146,7 @@ class AnimationActivity : ComponentActivity() {
                 Text("Add")
             }
             Row() {
-                AnimatedContent(targetState = count, transitionSpec = {
-                    if (targetState > initialState) {
-                        slideInVertically({ fullHeight -> fullHeight }) + fadeIn() with slideOutVertically(
-                            { fullHeight -> -fullHeight }) + fadeOut()
-                    } else {
-                        slideInVertically({ fullHeight -> -fullHeight }) + fadeIn() with slideOutVertically(
-                            { fullHeight -> fullHeight }) + fadeOut()
-                    }.using(SizeTransform(clip = false))
-
-                }) {
+                AnimatedContent(targetState = count) {
                     Row() {
                         Text(text = "Up/Down ", modifier = Modifier.padding(10.dp))
                         Box(modifier = Modifier.background(Color.LightGray)) {
@@ -166,16 +159,7 @@ class AnimationActivity : ComponentActivity() {
                     }
                 }
                 Spacer(modifier = Modifier.width(6.dp))
-                AnimatedContent(targetState = count, transitionSpec = {
-                    if (targetState > initialState) {
-                        slideInHorizontally({ fullHeight -> fullHeight }) + fadeIn() with slideOutHorizontally(
-                            { fullHeight -> -fullHeight }) + fadeOut()
-                    } else {
-                        slideInHorizontally({ fullHeight -> -fullHeight }) + fadeIn() with slideOutHorizontally(
-                            { fullHeight -> fullHeight }) + fadeOut()
-                    }.using(SizeTransform(clip = false))
-
-                }) {
+                AnimatedContent(targetState = count) {
                     Row() {
                         Text(text = "Left/Right ", modifier = Modifier.padding(10.dp))
                         Box(modifier = Modifier.background(Color.LightGray)) {
@@ -204,7 +188,7 @@ class AnimationActivity : ComponentActivity() {
         ) {
             AnimatedContent(targetState = expand, transitionSpec = {
                 fadeIn(animationSpec = tween(150, 150)) with
-                    fadeOut(animationSpec = tween(150)) using SizeTransform { initialSize, targetSize ->
+                        fadeOut(animationSpec = tween(150)) using SizeTransform { initialSize, targetSize ->
                     if (targetState) {
                         keyframes {
                             IntSize(targetSize.width, targetSize.height) at 150

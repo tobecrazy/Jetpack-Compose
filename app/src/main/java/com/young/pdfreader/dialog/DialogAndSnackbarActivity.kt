@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 
 class DialogAndSnackbarActivity : BaseActivity()  {
-    @ExperimentalMaterialApi
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

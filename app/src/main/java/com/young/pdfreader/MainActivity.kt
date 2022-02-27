@@ -54,7 +54,7 @@ import com.young.pdfreader.ui.theme.PDFreaderTheme
 class MainActivity : BaseActivity() {
     val isDarkTheme = false
 
-    @ExperimentalFoundationApi
+    @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
