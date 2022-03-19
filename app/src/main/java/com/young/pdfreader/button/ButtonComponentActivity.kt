@@ -1,5 +1,6 @@
 package com.young.pdfreader.button
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
@@ -23,7 +24,8 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.young.pdfreader.base.BaseActivity
-import com.young.pdfreader.base.BaseUI
+import com.young.pdfreader.base.CommonTopAppBar
+
 import com.young.pdfreader.viewmodel.MainViewModel
 
 
@@ -33,7 +35,7 @@ class ButtonComponentActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Column() {
-                BaseUI.initialTopAppBar(this@ButtonComponentActivity)
+                CommonTopAppBar(this@ButtonComponentActivity as Activity)
                 Column(modifier = Modifier.padding(10.dp)) {
                     Row() {
                         Column() {
@@ -107,7 +109,7 @@ class ButtonComponentActivity : BaseActivity() {
         FloatingActionButton(
             onClick = {
                 showToast(context = context, "$message times $count")
-                count ++
+                count++
             },
             modifier = Modifier
                 .padding(8.dp),

@@ -1,5 +1,6 @@
 package com.young.pdfreader
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
@@ -36,7 +37,8 @@ import androidx.constraintlayout.compose.layoutId
 import androidx.core.content.ContextCompat.startActivity
 import com.young.pdfreader.animation.AnimationActivity
 import com.young.pdfreader.base.BaseActivity
-import com.young.pdfreader.base.BaseUI
+import com.young.pdfreader.base.CommonTopAppBar
+
 import com.young.pdfreader.button.ButtonComponentActivity
 import com.young.pdfreader.data.ComponentItems
 import com.young.pdfreader.data.DateUtils
@@ -52,7 +54,7 @@ import com.young.pdfreader.toolbar.ToolbarComponentActivity
 import com.young.pdfreader.ui.theme.PDFreaderTheme
 
 class MainActivity : BaseActivity() {
-    val isDarkTheme = false
+    private val isDarkTheme = false
 
     @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,8 +66,8 @@ class MainActivity : BaseActivity() {
                     Column(
                         verticalArrangement = Arrangement.Top
                     ) {
-                        BaseUI.initialTopAppBar(
-                            activity = this@MainActivity
+                        CommonTopAppBar(
+                            activity = this@MainActivity as Activity
                         )
                         val context = LocalContext.current
                         Tab(

@@ -20,45 +20,12 @@ import com.young.pdfreader.R
  **/
 object BaseUI {
 
-    @Composable
-    fun initialTopAppBar(activity: Activity) {
-        TopAppBar(
-            title = {
-                Text(text = stringResource(id = R.string.title), maxLines = 1)
-            },
-            navigationIcon = {
-                val context = LocalContext.current
-                IconButton(onClick = {
-                    showToast(context = context, "Click Close button")
-                    activity.finish()
-                }) {
-                    ResourceIcon()
-                }
 
-            },
-            actions = {
-                val context = LocalContext.current
-                IconButton(onClick = {
-                    showToast(context = context, "Click Add button")
-                }) {
-                    Icon(Icons.Filled.Add, contentDescription = "")
-                }
-            }
-        )
-    }
 
     fun showToast(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 
-    @Composable
-    fun ResourceIcon() {
-        val desc = stringResource(id = R.string.a11y_close)
-        Icon(imageVector = Icons.Filled.Close, contentDescription = desc)
-//    Icon(
-//        painter = painterResource(R.drawable.ic_description_24),
-//        contentDescription = "print"
-//    )
-    }
+
 
 }
