@@ -1,123 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context=".other.OtherActivity">
 
-    <data>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_content_desc"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:rotation="12"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:text="@string/text_content_desc"
+        android:textSize="16sp" />
 
-    </data>
+    <TextView
+        android:id="@+id/textview_content_desc"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/text_content_desc"
+        android:textSize="16sp" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/show_bottom_sheet_dialog"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:text="@string/bottom_sheet_dialog"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/request_act"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:text="@string/act_jump"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/translucent_btn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:text="@string/translucent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/snackbar_btn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:text="@string/show_snackbar_button" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:context=".other.OtherActivity">
+        android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_content_desc"
-            android:layout_width="wrap_content"
+        <SeekBar
+            android:id="@+id/seekbar"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:rotation="12"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
-            android:text="@string/text_content_desc"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textview_content_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/text_content_desc"
-            android:textSize="16sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/show_bottom_sheet_dialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/bottom_sheet_dialog"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/request_act"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/act_jump"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/translucent_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/translucent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/snackbar_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/show_snackbar_button" />
-
-        <LinearLayout
+            android:layout_weight="0.2"
             android:layout_width="match_parent"
+            android:max="100"
+            android:progress="0" />
+
+        <EditText
+            android:editable="false"
+            android:id="@+id/seekbar_value"
+            android:inputType="number"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <SeekBar
-                android:id="@+id/seekbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:max="100"
-                android:progress="0" />
-
-            <EditText
-                android:id="@+id/seekbar_value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:editable="false"
-                android:inputType="number"
-                android:maxLines="1"
-                android:text="0%"
-                android:textAlignment="center" />
-        </LinearLayout>
-
-
-        <com.google.android.material.slider.Slider
-            android:id="@+id/slider"
+            android:layout_weight="0.8"
             android:layout_width="match_parent"
+            android:maxLines="1"
+            android:text="0%"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:value="60"
+        android:valueFrom="0"
+        android:valueTo="100" />
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:checked="true"
+            android:enabled="true"
+            android:id="@+id/switch_btn"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:value="60"
-            android:valueFrom="0"
-            android:valueTo="100" />
+            android:layout_width="wrap_content" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.SwitchCompat
+            android:checked="true"
+            android:enabled="true"
+            android:id="@+id/switch_compat"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="wrap_content" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switch_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:enabled="true" />
+    </LinearLayout>
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_compat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:enabled="true" />
-
-        </LinearLayout>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</layout>
+</androidx.appcompat.widget.LinearLayoutCompat>

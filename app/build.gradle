@@ -31,16 +31,15 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
-        useIR = true
     }
     buildFeatures {
         //noinspection DataBindingWithoutKapt
-        dataBinding true
+        viewBinding true
         compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.6.10'
+        kotlinCompilerVersion '1.7.0'
     }
     packagingOptions {
         resources {
@@ -53,7 +52,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-    implementation "com.squareup.okhttp3:okhttp:4.9.2"
+    implementation "com.squareup.okhttp3:okhttp:4.9.3"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
@@ -75,10 +74,10 @@ dependencies {
 
     //for constraint layout
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
-    implementation 'androidx.activity:activity-compose:1.4.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.activity:activity-compose:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
     //for gif
     implementation "io.coil-kt:coil-gif:1.4.0"
     //for svg

@@ -45,7 +45,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import androidx.databinding.DataBindingUtil
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.decode.GifDecoder
@@ -65,7 +64,8 @@ class ImagesComponentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        databinding = DataBindingUtil.setContentView(this, R.layout.activity_images)
+        databinding = ActivityImagesBinding.inflate(layoutInflater)
+        setContentView(databinding.root)
         databinding.imagesComposeView.setContent {
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 Text(
@@ -165,8 +165,12 @@ class ImagesComponentActivity : AppCompatActivity() {
                 builder = {
                     crossfade(true)
                     placeholder(R.drawable.placeholder)
-                    transformations(listOf(GrayscaleTransformation(),
-                        CircleCropTransformation()))
+                    transformations(
+                        listOf(
+                            GrayscaleTransformation(),
+                            CircleCropTransformation()
+                        )
+                    )
                 }
             )
 

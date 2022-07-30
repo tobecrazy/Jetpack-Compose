@@ -9,7 +9,6 @@ import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.young.pdfreader.R
@@ -26,7 +25,8 @@ class OtherActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_other)
+        binding = ActivityOtherBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setUpViewModel()
         binding.showBottomSheetDialog.setOnClickListener(this)
         binding.requestAct.setOnClickListener(this)

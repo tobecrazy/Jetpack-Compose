@@ -10,7 +10,7 @@ class PDFReaderViewModelFactory : ViewModelProvider.Factory {
     /**
      * Creates a new instance of the given `Class`
     </T> */
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MainViewModel() as T
     }
 }

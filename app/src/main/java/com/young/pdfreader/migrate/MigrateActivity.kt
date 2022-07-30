@@ -19,7 +19,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.young.pdfreader.R
@@ -33,7 +32,8 @@ class MigrateActivity : AppCompatActivity() {
     lateinit var composeView: ComposeView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_migrate)
+        dataBinding = ActivityMigrateBinding.inflate(layoutInflater)
+        setContentView(dataBinding.root)
         composeView = dataBinding.composeView
         setupViewModel()
         composeView.setContent {
