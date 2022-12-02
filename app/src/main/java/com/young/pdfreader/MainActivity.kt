@@ -1,5 +1,6 @@
 package com.young.pdfreader
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -52,10 +53,12 @@ import com.young.pdfreader.other.OtherActivity
 import com.young.pdfreader.text.TextComponentActivity
 import com.young.pdfreader.toolbar.ToolbarComponentActivity
 import com.young.pdfreader.ui.theme.PDFreaderTheme
+import com.young.pdfreader.webview.WebViewActivity
 
 class MainActivity : BaseActivity() {
     private val isDarkTheme = false
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +79,7 @@ class MainActivity : BaseActivity() {
                             modifier = Modifier.padding(1.dp)
                         ) {
                             val values = mutableListOf(
+                                ComponentItems.WEBVIEW.name,
                                 ComponentItems.MIGRATE.name,
                                 ComponentItems.TEXT.name,
                                 ComponentItems.IMAGE.name,
@@ -221,6 +225,8 @@ class MainActivity : BaseActivity() {
     fun navigateToActivity(context: Context, text: String) {
         var targetIntent: Intent? = null
         when (text) {
+            ComponentItems.WEBVIEW.name -> targetIntent =
+                Intent(context, WebViewActivity::class.java)
             ComponentItems.MIGRATE.name -> targetIntent =
                 Intent(context, MigrateActivity::class.java)
             ComponentItems.TEXT.name -> targetIntent =
@@ -291,7 +297,7 @@ class MainActivity : BaseActivity() {
     }
 
     @Composable
-    @Preview
+    @Preview(showBackground = true)
     fun NewsRepo(name: String) {
         MaterialTheme {
             Column(
@@ -354,7 +360,6 @@ class MainActivity : BaseActivity() {
 
 
     @Preview(showBackground = true, name = "Text")
-    @Preview
     @Composable
     fun DefaultPreview() {
         PDFreaderTheme {

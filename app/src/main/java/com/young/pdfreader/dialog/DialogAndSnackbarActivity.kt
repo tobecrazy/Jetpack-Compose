@@ -249,7 +249,7 @@ class DialogAndSnackbarActivity : BaseActivity()  {
             var sliderPositions by remember { mutableStateOf(0f..100f) }
             Text(text = sliderPositions.toString(), modifier = Modifier.padding(6.dp))
             RangeSlider(
-                values = sliderPositions,
+                value = sliderPositions,
                 onValueChange = { sliderPositions = it },
                 valueRange = 0f..100f,
                 onValueChangeFinished = {

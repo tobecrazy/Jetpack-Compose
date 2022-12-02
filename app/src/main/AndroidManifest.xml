@@ -23,6 +23,13 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".webview.WebViewActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".migrate.MigrateActivity"
             android:exported="false" />
         <activity
