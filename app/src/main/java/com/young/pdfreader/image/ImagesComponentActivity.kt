@@ -1,6 +1,5 @@
 package com.young.pdfreader.image
 
-import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.*
@@ -50,9 +49,7 @@ import coil.compose.rememberImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
-import coil.transform.BlurTransformation
 import coil.transform.CircleCropTransformation
-import coil.transform.GrayscaleTransformation
 import com.young.pdfreader.R
 import com.young.pdfreader.databinding.ActivityImagesBinding
 
@@ -167,7 +164,6 @@ class ImagesComponentActivity : AppCompatActivity() {
                     placeholder(R.drawable.placeholder)
                     transformations(
                         listOf(
-                            GrayscaleTransformation(),
                             CircleCropTransformation()
                         )
                     )
@@ -192,21 +188,6 @@ class ImagesComponentActivity : AppCompatActivity() {
 //                }
 //                .build()
             //Circle crop
-            painter = rememberImagePainter(
-                data = urls[1],
-                builder = {
-                    decoder(
-                        if (SDK_INT >= 28) {
-                            ImageDecoderDecoder(context)
-                        } else {
-                            GifDecoder()
-                        }
-                    )
-                    crossfade(true)
-                    placeholder(R.drawable.placeholder)
-//                    transformations(CircleCropTransformation())
-                }
-            )
             Spacer(modifier = Modifier.height(10.dp))
             Image(
                 modifier = Modifier
@@ -215,17 +196,6 @@ class ImagesComponentActivity : AppCompatActivity() {
                 painter = painter,
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds
-            )
-
-            //Rounded Corners
-            painter = rememberImagePainter(
-                data = urls[2],
-                builder = {
-                    decoder(SvgDecoder(context))
-                    crossfade(true)
-                    placeholder(R.drawable.placeholder)
-//                    transformations(RoundedCornersTransformation())
-                }
             )
             Spacer(modifier = Modifier.height(10.dp))
             Image(
@@ -238,20 +208,6 @@ class ImagesComponentActivity : AppCompatActivity() {
             )
 
             Spacer(modifier = Modifier.height(10.dp))
-            Image(
-                modifier = Modifier
-                    .size(480.dp)
-                    .background(Color.Transparent),
-                painter = rememberImagePainter(
-                    data = urls[3],
-                    builder = {
-                        crossfade(false)
-                        placeholder(R.drawable.placeholder)
-                        transformations(BlurTransformation(context, 0.2f, 3f))
-                    }
-                ),
-                contentDescription = null,
-            )
         }
 
     }
