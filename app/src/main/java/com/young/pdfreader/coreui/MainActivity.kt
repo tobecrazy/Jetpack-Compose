@@ -50,6 +50,7 @@ import com.young.pdfreader.coreui.image.ImagesComponentActivity
 import com.young.pdfreader.coreui.layout.LayoutActivity
 import com.young.pdfreader.coreui.list.ListItemComponentActivity
 import com.young.pdfreader.coreui.migrate.MigrateActivity
+import com.young.pdfreader.coreui.opencv.OpenCVActivity
 import com.young.pdfreader.coreui.other.OtherActivity
 import com.young.pdfreader.coreui.text.TextComponentActivity
 import com.young.pdfreader.coreui.toolbar.ToolbarComponentActivity
@@ -227,6 +228,8 @@ class MainActivity : BaseActivity() {
     fun navigateToActivity(context: Context, text: String) {
         var targetIntent: Intent? = null
         when (text) {
+            ComponentItems.OPENCV.name ->
+                Intent(context, OpenCVActivity::class.java)
             ComponentItems.WEBVIEW.name -> targetIntent =
                 Intent(context, WebViewActivity::class.java)
             ComponentItems.MIGRATE.name -> targetIntent =
@@ -260,7 +263,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-    fun showToast(context: Context, msg: String) {
+    private fun showToast(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 
