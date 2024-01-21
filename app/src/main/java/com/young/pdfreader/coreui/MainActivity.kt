@@ -228,30 +228,42 @@ class MainActivity : BaseActivity() {
     fun navigateToActivity(context: Context, text: String) {
         var targetIntent: Intent? = null
         when (text) {
-            ComponentItems.OPENCV.name ->
+            ComponentItems.OPENCV.name -> targetIntent =
                 Intent(context, OpenCVActivity::class.java)
+
             ComponentItems.WEBVIEW.name -> targetIntent =
                 Intent(context, WebViewActivity::class.java)
+
             ComponentItems.MIGRATE.name -> targetIntent =
                 Intent(context, MigrateActivity::class.java)
+
             ComponentItems.TEXT.name -> targetIntent =
                 Intent(context, TextComponentActivity::class.java)
+
             ComponentItems.IMAGE.name -> targetIntent =
                 Intent(context, ImagesComponentActivity::class.java)
+
             ComponentItems.BUTTON.name -> targetIntent =
                 Intent(context, ButtonComponentActivity::class.java)
+
             ComponentItems.DIALOG.name -> targetIntent =
                 Intent(context, DialogAndSnackbarActivity::class.java)
+
             ComponentItems.LIST.name -> targetIntent =
                 Intent(context, ListItemComponentActivity::class.java)
+
             ComponentItems.TOOLBAR.name -> targetIntent =
                 Intent(context, ToolbarComponentActivity::class.java)
+
             ComponentItems.ANIMATION.name -> targetIntent =
                 Intent(context, AnimationActivity::class.java)
+
             ComponentItems.GESTURE.name -> targetIntent =
                 Intent(context, GestureActivity::class.java)
+
             ComponentItems.LAYOUT.name -> targetIntent =
                 Intent(context, LayoutActivity::class.java)
+
             ComponentItems.OTHER.name -> targetIntent =
                 Intent(context, OtherActivity::class.java)
 
