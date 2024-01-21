@@ -22,77 +22,77 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".webview.WebViewActivity"
+            android:name=".coreui.webview.WebViewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".migrate.MigrateActivity"
+            android:name=".coreui.migrate.MigrateActivity"
             android:exported="false" />
         <activity
-            android:name=".layout.TabActivity"
+            android:name=".coreui.layout.TabActivity"
             android:exported="false" />
         <activity
-            android:name=".other.TranslucentActivity"
+            android:name=".coreui.other.TranslucentActivity"
             android:exported="true"
             android:theme="@style/TransparentTheme"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".other.RequestActivity"
+            android:name=".coreui.other.RequestActivity"
             android:exported="true"
             android:hardwareAccelerated="false" />
         <activity
-            android:name=".other.DownloadActivity"
+            android:name=".coreui.other.DownloadActivity"
             android:exported="true" />
         <activity
-            android:name=".other.UploadActivity"
+            android:name=".coreui.other.UploadActivity"
             android:exported="true" />
         <activity
-            android:name=".other.OtherActivity"
+            android:name=".coreui.other.OtherActivity"
             android:exported="true" />
         <activity
-            android:name=".layout.CardLayoutActivity"
+            android:name=".coreui.layout.CardLayoutActivity"
             android:exported="true" />
         <activity
-            android:name=".layout.ConstraintLayoutActivity"
+            android:name=".coreui.layout.ConstraintLayoutActivity"
             android:exported="true" />
         <activity
-            android:name=".layout.LayoutActivity"
+            android:name=".coreui.layout.LayoutActivity"
             android:exported="true" />
         <activity
-            android:name=".layout.ScaffoldLayoutActivity"
+            android:name=".coreui.layout.ScaffoldLayoutActivity"
             android:exported="true" />
         <activity
-            android:name=".layout.ScrollableTabLayoutActivity"
+            android:name=".coreui.layout.ScrollableTabLayoutActivity"
             android:exported="true" />
         <activity
-            android:name=".animation.AnimationActivity"
+            android:name=".coreui.animation.AnimationActivity"
             android:exported="true" />
         <activity
-            android:name=".gesture.GestureActivity"
+            android:name=".coreui.gesture.GestureActivity"
             android:exported="true" />
         <activity
-            android:name=".list.ListItemComponentActivity"
+            android:name=".coreui.list.ListItemComponentActivity"
             android:exported="true" />
         <activity
-            android:name=".dialog.DialogAndSnackbarActivity"
+            android:name=".coreui.dialog.DialogAndSnackbarActivity"
             android:exported="true" />
         <activity
-            android:name=".button.ButtonComponentActivity"
+            android:name=".coreui.button.ButtonComponentActivity"
             android:exported="true" />
         <activity
-            android:name=".image.ImagesComponentActivity"
+            android:name=".coreui.image.ImagesComponentActivity"
             android:exported="true" />
         <activity
-            android:name=".text.TextComponentActivity"
+            android:name=".coreui.text.TextComponentActivity"
             android:exported="true" />
         <activity
-            android:name=".toolbar.ToolbarComponentActivity"
+            android:name=".coreui.toolbar.ToolbarComponentActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".coreui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PDFReader.NoActionBar">

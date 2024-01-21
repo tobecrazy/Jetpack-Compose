@@ -7,7 +7,7 @@
     android:layout_marginTop="@dimen/cardview_default_elevation"
     android:background="@color/white"
     android:gravity="center"
-    tools:context=".other.OtherActivity">
+    tools:context=".coreui.other.OtherActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/bottom_sheet_upload"

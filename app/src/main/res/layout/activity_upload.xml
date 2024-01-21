@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".other.UploadActivity">
+    tools:context=".coreui.other.UploadActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/close_upload_btn"

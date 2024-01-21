@@ -5,6 +5,7 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.young.pdfreader.coreui.MainActivity
 import com.young.pdfreader.data.ComponentItems
 import org.junit.Assert.assertEquals
 import org.junit.Rule
