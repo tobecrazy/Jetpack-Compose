@@ -7,7 +7,7 @@ import android.content.Intent
  * Create by Young on 11/28/2021
  **/
 class FileUtils {
-    fun openFile(activity: Activity, REQUEST_CODE: Int) {
+    fun openFile(activity: Activity, requestCode: Int) {
         activity.startActivityForResult(
             Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
 
@@ -21,7 +21,7 @@ class FileUtils {
                     )
                 )
             },
-            REQUEST_CODE
+            requestCode
         )
     }
 }
