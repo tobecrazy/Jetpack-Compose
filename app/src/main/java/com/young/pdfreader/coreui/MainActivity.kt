@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
+import android.view.accessibility.AccessibilityEvent
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -36,6 +38,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.layoutId
 import androidx.core.content.ContextCompat.startActivity
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.young.pdfreader.R
 import com.young.pdfreader.coreui.animation.AnimationActivity
 import com.young.pdfreader.coreui.base.BaseActivity
@@ -276,7 +280,28 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showToast(context: Context, msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+        val snackbar = Snackbar.make(context, window.decorView, msg, Snackbar.LENGTH_LONG)
+//        val callback = object : Snackbar.Callback() {
+//            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+//                Log.d("OtherActivity", "===>$event")
+//                super.onDismissed(transientBottomBar, event)
+//            }
+//
+//            override fun onShown(sb: Snackbar?) {
+//                Log.d("OtherActivity", "===>on show")
+//                super.onShown(sb)
+//            }
+//        }
+//
+//
+//        snackbar.addCallback(callback)
+        snackbar.view.postDelayed({
+            snackbar.view.requestFocus()
+            snackbar.view.sendAccessibilityEvent(AccessibilityEvent.TYPE_ANNOUNCEMENT)
+        }, 100)
+        snackbar.show()
+
+//        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 
 
