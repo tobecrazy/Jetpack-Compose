@@ -105,6 +105,7 @@ class MainActivity : BaseActivity() {
                             )
                             Spacer(modifier = Modifier.height(10.dp))
                             CardComponent()
+                            MyToast(msg = "Test By Young")
                         }
                     }
 
@@ -277,6 +278,13 @@ class MainActivity : BaseActivity() {
             startActivity(context, it, null)
         }
 
+    }
+
+    @Composable
+    fun MyToast(msg: String) {
+        Snackbar(modifier = Modifier.padding(10.dp)) {
+            Text(text = msg)
+        }
     }
 
     private fun showToast(context: Context, msg: String) {

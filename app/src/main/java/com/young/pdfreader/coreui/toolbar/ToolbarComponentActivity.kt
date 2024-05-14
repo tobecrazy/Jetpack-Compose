@@ -144,64 +144,7 @@ class ToolbarComponentActivity : BaseActivity() {
     fun CustomBottomSheetScaffold(title: String, subTitle: String) {
         val scope = rememberCoroutineScope()
         val scaffoldState = rememberBottomSheetScaffoldState()
-        BottomSheetScaffold(
-            sheetContent = {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(130.dp), contentAlignment = Alignment.Center
-                ) {
-                    Text(text = title)
-                }
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(64.dp), horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(text = subTitle)
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Button(onClick = { scope.launch { scaffoldState.bottomSheetState.collapse() } }) {
-                        Text(text = "Click to collapse")
-                    }
-                }
-            },
-            scaffoldState = scaffoldState,
-            topBar = {
-                CustomToolBar(title = title)
-            },
-            floatingActionButton = {
-                var clickCount by remember {
-                    mutableStateOf(0)
-                }
-
-                FloatingActionButton(onClick = {
-                    scope.launch {
-                        scaffoldState.snackbarHostState.showSnackbar("Snackbar ===> ${++clickCount}")
-                    }
-                }) {
-                    Icon(imageVector = Icons.Default.Person, contentDescription = "")
-                }
-            },
-            floatingActionButtonPosition = FabPosition.End,
-            sheetPeekHeight = 130.dp,
-            drawerContent = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text("Drawer content")
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Button(onClick = { scope.launch { scaffoldState.drawerState.close() } }) {
-                        Text(text = "Click to close drawer")
-                    }
-
-                }
-            }, backgroundColor = Color.LightGray
-        ) {
-
-        }
-
+        //TODO fixme
     }
 
     @Composable
