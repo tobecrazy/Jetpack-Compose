@@ -3,11 +3,14 @@ package com.young.pdfreader.coreui.button
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.widget.ScrollView
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -17,12 +20,16 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.state.ToggleableState
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.young.pdfreader.coreui.base.BaseActivity
 import com.young.pdfreader.coreui.base.CommonTopAppBar
 
@@ -32,9 +39,10 @@ import com.young.pdfreader.viewmodel.MainViewModel
 class ButtonComponentActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val state: ScrollState = ScrollState(1)
         super.onCreate(savedInstanceState)
         setContent {
-            Column() {
+            Column(modifier = Modifier.verticalScroll(state = state , true)) {
                 CommonTopAppBar(this@ButtonComponentActivity as Activity)
                 Column(modifier = Modifier.padding(10.dp)) {
                     Row() {
@@ -87,14 +95,15 @@ class ButtonComponentActivity : BaseActivity() {
         val context = LocalContext.current
         Text(text = "Text buttons are typically used for less-pronounced actions, including those located in dialogs and cards. In cards, text buttons help maintain an emphasis on card content.")
         TextButton(
+            modifier = Modifier.padding(10.dp).wrapContentHeight().wrapContentWidth(),
             onClick = {
                 showToast(context = context, "You clicked TextButton")
             },
             enabled = true,
             shape = MaterialTheme.shapes.large,
-            colors = ButtonDefaults.textButtonColors()
+            colors = ButtonDefaults.textButtonColors(),
         ) {
-            Text(text = "Learn more")
+            Text(text = "Learn more", modifier = Modifier.wrapContentWidth().wrapContentHeight(), textAlign = TextAlign.Left, color = Color.Blue,fontSize = 20.sp , fontStyle = FontStyle.Italic, fontFamily = FontFamily.Default)
         }
     }
 
