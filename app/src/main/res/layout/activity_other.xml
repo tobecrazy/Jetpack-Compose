@@ -16,6 +16,8 @@
         android:scaleX="0.8"
         android:scaleY="0.8"
         android:text="@string/text_content_desc"
+        android:contentDescription="@null"
+        android:screenReaderFocusable="false"
         android:textSize="16sp" />
 
     <TextView
@@ -24,6 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="@string/text_content_desc"
+        android:screenReaderFocusable="false"
+        android:contentDescription="@null"
         android:textSize="16sp" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -32,6 +36,9 @@
         android:layout_width="wrap_content"
         android:padding="10dp"
         android:text="@string/bottom_sheet_dialog"
+        android:screenReaderFocusable="true"
+        android:focusable="true"
+        android:contentDescription="@string/text_content_desc"
         tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -40,6 +47,7 @@
         android:layout_width="wrap_content"
         android:padding="10dp"
         android:text="@string/act_jump"
+        android:screenReaderFocusable="false"
         tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -47,6 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:padding="10dp"
+        android:contentDescription="@null"
+        android:screenReaderFocusable="false"
+        android:focusable="false"
         android:text="@string/translucent" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -78,7 +89,8 @@
             android:layout_width="match_parent"
             android:maxLines="1"
             android:text="0%"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            tools:ignore="Deprecated" />
     </LinearLayout>
 
 
